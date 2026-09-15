@@ -22,7 +22,8 @@
   </a>
   <nav class="topnav" id="topnav" hidden>
     <button class="navbtn active" data-go="list">Bài viết</button>
-    <a class="navbtn" href="../tin-tuc.html" target="_blank" rel="noopener">Xem website ↗</a>
+    <button class="navbtn" data-go="content">Nội dung trang</button>
+    <a class="navbtn" href="../index.html" target="_blank" rel="noopener">Xem website ↗</a>
   </nav>
   <div class="userbox" id="userbox" hidden>
     <img id="user-avatar" alt="" width="28" height="28">
@@ -228,6 +229,29 @@
       </aside>
     </div>
   </section>
+
+  <!-- ===== Nội dung các trang (thông tin công ty, nhân sự, thiết bị, hợp đồng, dự án…) ===== -->
+  <section class="view" id="view-content" hidden>
+    <div class="page-head">
+      <div>
+        <h1>Nội dung trang</h1>
+        <p class="muted">Sửa thông tin hiển thị trên Trang chủ, Giới thiệu, Năng lực, Dự án, Liên hệ. Bấm <strong>Lưu</strong> để website cập nhật (1–2 phút).</p>
+      </div>
+      <div class="actions">
+        <span class="chip draft" id="content-dirty" hidden>Chưa lưu</span>
+        <button class="btn btn-ghost" id="content-reload" type="button" title="Tải lại từ kho, bỏ thay đổi chưa lưu">⟳</button>
+        <button class="btn btn-primary" id="content-save" type="button">Lưu &amp; cập nhật website</button>
+      </div>
+    </div>
+    <div class="content-grid">
+      <nav class="content-nav" id="content-nav" aria-label="Các phần nội dung"></nav>
+      <div class="content-main">
+        <div class="loading" id="content-loading"><span class="spinner"></span> Đang tải nội dung…</div>
+        <p class="error" id="content-error" hidden></p>
+        <div id="content-form"></div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <div class="toast-wrap" id="toasts"></div>
@@ -247,5 +271,6 @@
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 <script src="config.js"></script>
 <script src="admin.js"></script>
+<script src="content.js"></script>
 </body>
 </html>

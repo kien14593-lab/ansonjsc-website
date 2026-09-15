@@ -138,12 +138,32 @@
   function fromEditorMd(md) { return md.split(RAW).join(''); }
 
   /* ================= Điều hướng ================= */
+  var VIEWS = ['login', 'setup', 'list', 'editor', 'content'];
+  function currentView() { for (var i = 0; i < VIEWS.length; i++) if (!$('#view-' + VIEWS[i]).hidden) return VIEWS[i]; return ''; }
   function show(view) {
-    ['login', 'setup', 'list', 'editor'].forEach(function (v) { $('#view-' + v).hidden = v !== view; });
-    var loggedIn = !!user && (view === 'list' || view === 'editor' || (view === 'setup' && setupMode === 'change'));
+    VIEWS.forEach(function (v) { $('#view-' + v).hidden = v !== view; });
+    var loggedIn = !!user && (view === 'list' || view === 'editor' || view === 'content' || (view === 'setup' && setupMode === 'change'));
     $('#topnav').hidden = !loggedIn;
     $('#userbox').hidden = !loggedIn;
+    var navKey = view === 'editor' ? 'list' : view;
+    document.querySelectorAll('.navbtn[data-go]').forEach(function (b) { b.classList.toggle('active', b.dataset.go === navKey); });
     window.scrollTo(0, 0);
+  }
+  /* Hỏi xác nhận khi rời màn hình đang có thay đổi chưa lưu (bài viết hoặc nội dung trang). */
+  function guardLeave() {
+    var v = currentView();
+    if (v === 'editor' && dirty) return confirmDialog('Rời trang soạn thảo', 'Bạn có thay đổi chưa lưu. Rời đi và bỏ các thay đổi này?', 'Bỏ thay đổi');
+    if (v === 'content' && window.AdminContent && AdminContent.isDirty()) return confirmDialog('Rời trang nội dung', 'Nội dung trang có thay đổi chưa lưu. Rời đi và bỏ các thay đổi này?', 'Bỏ thay đổi');
+    return Promise.resolve(true);
+  }
+  function goTo(view) {
+    return guardLeave().then(function (ok) {
+      if (!ok) return false;
+      if (view === 'editor') dirty = false;
+      if (view === 'content') { if (window.AdminContent) AdminContent.open(); else toast('Không tải được mô-đun nội dung trang', 'err'); }
+      else show(view);
+      return true;
+    });
   }
 
   /* ================= Mã hoá token bằng mật khẩu (WebCrypto) =================
@@ -279,6 +299,7 @@
 
     $('#btn-logout').addEventListener('click', function () {
       clearToken(); user = null; posts = [];
+      if (window.AdminContent) AdminContent.reset();
       openLogin();
     });
     $('#btn-password').addEventListener('click', function () { setupMode = 'change'; openSetup(); });
@@ -431,7 +452,7 @@
       if (btn.dataset.act === 'edit') openEditor(post);
       if (btn.dataset.act === 'del') removePost(post);
     });
-    document.querySelectorAll('[data-go="list"]').forEach(function (b) { b.addEventListener('click', function () { leaveEditor().then(function (ok) { if (ok) show('list'); }); }); });
+    document.querySelectorAll('.navbtn[data-go]').forEach(function (b) { b.addEventListener('click', function () { goTo(b.dataset.go); }); });
   }
   function removePost(post) {
     confirmDialog('Xoá bài viết', 'Xoá vĩnh viễn bài “' + (post.meta.title || post.slug) + '”? Trang bài viết sẽ bị gỡ khỏi website sau khi cập nhật.', 'Xoá').then(function (ok) {
@@ -470,7 +491,10 @@
         .finally(function () { lbl.classList.remove('disabled'); lbl.firstChild.textContent = 'Tải ảnh lên'; });
     });
     $('#btn-cover-clear').addEventListener('click', function () { setCover(''); dirty = true; });
-    window.addEventListener('beforeunload', function (e) { if (dirty && !$('#view-editor').hidden) { e.preventDefault(); e.returnValue = ''; } });
+    window.addEventListener('beforeunload', function (e) {
+      var v = currentView();
+      if ((v === 'editor' && dirty) || (v === 'content' && window.AdminContent && AdminContent.isDirty())) { e.preventDefault(); e.returnValue = ''; }
+    });
     setupEditor();
   }
   function setupEditor() {
@@ -536,18 +560,33 @@
     if (!dirty) return Promise.resolve(true);
     return confirmDialog('Rời trang soạn thảo', 'Bạn có thay đổi chưa lưu. Rời đi và bỏ các thay đổi này?', 'Bỏ thay đổi');
   }
-  function uploadImage(file) {
-    var ext = ((file.name || '').split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+  function uploadFile(file, opts) {
+    opts = opts || {};
+    var kind = opts.kind || 'image';
+    var name = file.name || (kind === 'image' ? 'anh.jpg' : 'tep');
+    var ext = (name.split('.').pop() || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     if (ext === 'jpeg') ext = 'jpg';
-    if (!/^(jpg|png|gif|webp|svg)$/.test(ext)) ext = (file.type || '').split('/')[1] || 'jpg';
-    if (file.size > 5 * 1024 * 1024) return Promise.reject(new Error('Ảnh vượt quá 5 MB, hãy giảm kích thước trước khi tải lên.'));
-    var base = slugify((file.name || 'anh').replace(/\.[^.]+$/, '')) || 'anh';
-    var d = new Date();
-    var path = CFG.uploadsDir + '/' + d.getFullYear() + '/' + base + '-' + Date.now().toString(36) + '.' + ext;
-    return file.arrayBuffer().then(function (buf) {
-      return putFile(path, bytesToB64(new Uint8Array(buf)), 'Tải ảnh lên: ' + base + '.' + ext);
-    }).then(function () { return path; });
+    if (kind === 'image') {
+      if (!/^(jpg|png|gif|webp|svg)$/.test(ext)) ext = (file.type || '').split('/')[1] || 'jpg';
+      if (!/^(jpg|png|gif|webp|svg)$/.test(ext)) return Promise.reject(new Error('Chỉ nhận ảnh JPG, PNG, GIF, WEBP hoặc SVG.'));
+    } else if (opts.exts && opts.exts.indexOf(ext) < 0) {
+      return Promise.reject(new Error('Chỉ nhận tệp ' + opts.exts.join(', ').toUpperCase() + '.'));
+    }
+    var maxMB = opts.maxMB || 5;
+    if (file.size > maxMB * 1024 * 1024) return Promise.reject(new Error('Tệp vượt quá ' + maxMB + ' MB, hãy giảm kích thước trước khi tải lên.'));
+    var base = slugify(name.replace(/\.[^.]+$/, '')) || 'tep';
+    var path = opts.path;   // ghi đè đúng đường dẫn cũ (giữ nguyên địa chỉ tệp)
+    if (!path) {
+      var dir = opts.dir || (CFG.uploadsDir + '/' + new Date().getFullYear());
+      path = dir + '/' + base + '-' + Date.now().toString(36) + '.' + ext;
+    }
+    var shaP = opts.path ? getFile(path).then(function (d) { return d.sha; }, function (err) { if (err.status === 404) return undefined; throw err; }) : Promise.resolve(undefined);
+    return Promise.all([file.arrayBuffer(), shaP]).then(function (r) {
+      return putFile(path, bytesToB64(new Uint8Array(r[0])), (opts.path ? 'Thay tệp: ' : 'Tải lên: ') + path.split('/').pop(), r[1]);
+    }).then(function (res) { lastUploadCommit = res && res.commit && res.commit.sha; return path; });
   }
+  var lastUploadCommit = null;
+  function uploadImage(file) { return uploadFile(file, { kind: 'image', maxMB: 5 }); }
   function savePost() {
     var title = $('#f-title').value.trim();
     var body = getBody().trim();
@@ -621,6 +660,13 @@
   $('#deploy-close').addEventListener('click', function () { $('#deploy').hidden = true; if (deployTimer) clearInterval(deployTimer); });
 
   /* ================= Khởi động ================= */
+  /* API dùng chung cho mô-đun "Nội dung trang" (content.js) */
+  window.AdminCore = {
+    CFG: CFG, RAW: RAW, gh: gh, getFile: getFile, putFile: putFile, uploadFile: uploadFile, uploadImage: uploadImage,
+    toast: toast, confirmDialog: confirmDialog, busy: busy, esc: esc, utf8ToB64: utf8ToB64, b64ToUtf8: b64ToUtf8,
+    friendlyError: friendlyError, watchDeploy: watchDeploy, slugify: slugify, show: show, isLoggedIn: function () { return !!user; },
+    lastCommit: function () { return lastUploadCommit; }
+  };
   initLogin(); initList(); initEditorView();
   if (token) {
     verifyToken().then(enterApp).catch(function (err) {

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Sinh website tĩnh ANSON JSC từ site_data.py
+"""Sinh website tĩnh ANSON JSC từ content/site.json (qua site_data.py) và content/posts/*.md
 
 Cách dùng (từ thư mục gốc website):  python tools\\build_site.py
 Hoặc chỉ định thư mục xuất:          python tools\\build_site.py <thư mục>
@@ -14,11 +14,19 @@ ROOT = ""            # tiền tố đường dẫn tương đối: "" cho trang 
 IMG = "assets/img/"
 POSTS_DIR = os.path.join(OUT, "content", "posts")   # bài viết Markdown do trang quản trị tạo
 POST_URL_DIR = "tin-tuc"                             # thư mục xuất trang bài viết
+PLACEHOLDER_IMG = "prj-tk-gtxanh-1.jpg"              # ảnh thay thế khi mục không có ảnh
 
 def set_root(r):
     global ROOT, IMG
     ROOT = r
     IMG = r + "assets/img/"
+
+def img_url(f):
+    """Ảnh khai báo bằng tên tệp (trong assets/img/) hoặc đường dẫn từ gốc website (vd. assets/uploads/...)."""
+    f = str(f or "").strip() or PLACEHOLDER_IMG
+    if f.startswith(("http://", "https://", "data:")):
+        return f
+    return ROOT + f.lstrip("/") if "/" in f else IMG + f
 
 def esc(s):
     return html.escape(str(s), quote=True)
@@ -220,7 +228,7 @@ def section_head(eyebrow, title, desc="", left=False):
     return f'<div class="{cls} reveal"><span class="eyebrow">{esc(eyebrow)}</span><h2>{title}</h2>{d}</div>'
 
 def project_by_id(pid):
-    return next(p for p in PROJECTS if p[0] == pid)
+    return next((p for p in PROJECTS if p[0] == pid), None)
 
 def group_chip(group):
     cls = {"Thiết kế": "", "Giám sát": "navy", "Thi công": ""}.get(group, "")
@@ -451,13 +459,15 @@ def build_index(posts=()):
     projects = ""
     for pid in HOME_PROJECT_IDS:
         p = project_by_id(pid)
+        if not p:
+            continue
         _, group, name, owner, grade, specs, imgs = p
         projects += f"""<a class="project-card reveal" href="du-an.html#prj-{pid}">
-  <div class="thumb"><img src="{IMG}{imgs[0]}" alt="{esc(name)}" loading="lazy"><span class="badge {group_chip(group)}">{esc(group)}</span></div>
+  <div class="thumb"><img src="{img_url(imgs[0] if imgs else '')}" alt="{esc(name)}" loading="lazy"><span class="badge {group_chip(group)}">{esc(group)}</span></div>
   <div class="body"><h3>{esc(name)}</h3><p class="meta">{esc(owner)}</p><span class="chip accent">Công trình {esc(grade.lower())}</span></div>
 </a>"""
     awards = "".join(
-        f'<article class="cert-card reveal"><a class="thumb" href="{IMG}{f}" data-lightbox="awards" data-caption="{esc(t)}"><img src="{IMG}{f}" alt="{esc(t)}" loading="lazy"></a><div class="body"><h3>{esc(t)}</h3><p>{esc(d)}</p></div></article>'
+        f'<article class="cert-card reveal"><a class="thumb" href="{img_url(f)}" data-lightbox="awards" data-caption="{esc(t)}"><img src="{img_url(f)}" alt="{esc(t)}" loading="lazy"></a><div class="body"><h3>{esc(t)}</h3><p>{esc(d)}</p></div></article>'
         for f, t, d in AWARDS)
     clients = "".join(f"<span>{esc(c)}</span>" for c in CLIENTS)
     total_contracts = sum(len(g[3]) for g in CONTRACT_GROUPS)
@@ -590,18 +600,18 @@ def build_about():
 
     body = page_hero("Giới thiệu công ty", "Hơn 18 năm xây dựng thương hiệu trong lĩnh vực tư vấn và thi công công trình giao thông.", "prj-tk-gtxanh-1.jpg", "Giới thiệu")
     body += subnav([("loi-mo-dau", "Lời mở đầu"), ("thong-tin", "Thông tin chung"), ("nganh-nghe", "Ngành nghề"), ("so-do", "Sơ đồ tổ chức"), ("lanh-dao", "Ban lãnh đạo"), ("nhan-su", "Nhân sự")])
+    letter_intro = "".join(f"<p>{esc(p)}</p>" for p in LETTER["intro"])
+    letter_outro = "".join(f"<p>{esc(p)}</p>" for p in LETTER["outro"])
     body += f"""
 <section class="section" id="loi-mo-dau">
   <div class="container">
     {section_head("Lời mở đầu", "Thư ngỏ từ Ban Giám đốc", left=True)}
     <div class="letter">
       <div class="letter-body reveal">
-        <p>Công ty Cổ phần An Sơn là một doanh nghiệp được thành lập với chức năng hoạt động về tư vấn khảo sát xây dựng, tư vấn đấu thầu, lập quy hoạch, lập dự án đầu tư, thiết kế xây dựng công trình, thẩm tra thiết kế và dự toán, giám sát thi công xây dựng; thi công xây dựng công trình giao thông, dân dụng, thủy lợi… theo Giấy chứng nhận đăng ký kinh doanh số 0304870975 (đăng ký lần đầu ngày 15/03/2007) do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp.</p>
-        <p>Trải qua hơn 18 năm hoạt động, đến nay Công ty Cổ phần An Sơn đã khẳng định được thương hiệu và quy mô hoạt động của mình trong lĩnh vực xây dựng công trình giao thông. Với đội ngũ cán bộ, chuyên gia giàu kinh nghiệm, cùng với sự phát triển của đất nước nói chung và ngành xây dựng nói riêng, chúng tôi không ngừng củng cố và nâng cao trình độ cho cán bộ công nhân viên, đồng thời ứng dụng công nghệ mới phù hợp với tiến bộ của khoa học kỹ thuật.</p>
+        {letter_intro}
         <div class="quote">“{esc(C['slogan'])}”</div>
-        <p>Với phương châm trên, chúng tôi tin rằng sẽ tạo dựng vững chắc thương hiệu của Công ty Cổ phần An Sơn. Ban Giám đốc cùng toàn thể cán bộ công nhân viên Công ty chân thành cảm ơn sự quan tâm, chia sẻ và hợp tác của Quý khách hàng. Chúng tôi tin vào định hướng chiến lược và sự nỗ lực không ngừng của tập thể cán bộ công nhân viên Công ty Cổ phần An Sơn sẽ là nền tảng vững chắc trong sự nghiệp phát triển của đất nước.</p>
-        <p>Trân trọng./.</p>
-        <div class="signature"><div class="role">Tổng Giám đốc</div><div class="name">Trần Minh Nhật</div></div>
+        {letter_outro}
+        <div class="signature"><div class="role">{esc(LETTER['signer_role'])}</div><div class="name">{esc(LETTER['signer_name'])}</div></div>
       </div>
       <div class="letter-aside reveal">
         <img src="{IMG}prj-tc-tonducthang-1.jpg" alt="Thi công sửa chữa, mở rộng mặt cầu Tôn Đức Thắng" loading="lazy">
@@ -634,7 +644,7 @@ def build_about():
 
 <section class="section" id="nganh-nghe">
   <div class="container">
-    {section_head("Ngành nghề kinh doanh chính", "10 lĩnh vực hoạt động theo đăng ký")}
+    {section_head("Ngành nghề kinh doanh chính", f"{len(FIELDS)} lĩnh vực hoạt động theo đăng ký")}
     <ol class="field-list reveal">{fields}</ol>
   </div>
 </section>
@@ -680,10 +690,10 @@ def build_about():
 # ---------------- NĂNG LỰC ----------------
 def build_capability():
     legal = "".join(
-        f'<figure><a href="{IMG}{f}" data-lightbox="legal" data-caption="{esc(t)}"><img src="{IMG}{f}" alt="{esc(t)}" loading="lazy"><figcaption>{esc(t)}</figcaption></a></figure>'
+        f'<figure><a href="{img_url(f)}" data-lightbox="legal" data-caption="{esc(t)}"><img src="{img_url(f)}" alt="{esc(t)}" loading="lazy"><figcaption>{esc(t)}</figcaption></a></figure>'
         for f, t in LEGAL)
     awards = "".join(
-        f'<article class="cert-card reveal"><a class="thumb" href="{IMG}{f}" data-lightbox="awards" data-caption="{esc(t)}"><img src="{IMG}{f}" alt="{esc(t)}" loading="lazy"></a><div class="body"><h3>{esc(t)}</h3><p>{esc(d)}</p></div></article>'
+        f'<article class="cert-card reveal"><a class="thumb" href="{img_url(f)}" data-lightbox="awards" data-caption="{esc(t)}"><img src="{img_url(f)}" alt="{esc(t)}" loading="lazy"></a><div class="body"><h3>{esc(t)}</h3><p>{esc(d)}</p></div></article>'
         for f, t, d in AWARDS)
 
     def equip_table(rows, title, icon):
@@ -694,15 +704,23 @@ def build_capability():
     fin_rows = ""
     for label, vals in FINANCE:
         fin_rows += f'<tr><td class="owner">{esc(label)}</td>' + "".join(f'<td class="num">{money(v)}</td>' for v in vals) + "</tr>"
-    rev = dict(FINANCE)["Tổng doanh thu"]
-    profit = dict(FINANCE)["Lợi nhuận sau thuế"]
-    assets = dict(FINANCE)["Tổng tài sản"]
+
+    def fin_row(keyword, idx):
+        """Tìm dòng tài chính theo từ khoá trong nhãn; nếu không có thì theo vị trí; nếu vẫn không có thì toàn 0."""
+        for label, vals in FINANCE:
+            if keyword in label.lower():
+                return vals
+        return FINANCE[idx][1] if idx < len(FINANCE) else [0] * len(FIN_YEARS)
+    rev = fin_row("doanh thu", 3)
+    profit = fin_row("lợi nhuận", 4)
+    assets = fin_row("tổng tài sản", 0)
     fin_cards = "".join(
         f'<div class="fin-card reveal"><div class="yr">Năm {y}</div><div class="rev">{bil(r)} tỷ</div><div class="lbl">Tổng doanh thu</div><div class="lbl" style="margin-top:.6rem">Lợi nhuận sau thuế: <strong>{money(p)} đ</strong><br>Tổng tài sản: <strong>{bil(a)} tỷ</strong></div></div>'
         for y, r, p, a in zip(FIN_YEARS, rev, profit, assets))
     bars = "".join(
         f'<div class="bar"><div class="fill" data-value="{r}" style="height:6%"><span>{bil(r)} tỷ</span></div><div class="yr">{y}</div></div>'
         for y, r in zip(FIN_YEARS, rev))
+    years_text = ", ".join(FIN_YEARS)
 
     body = page_hero("Hồ sơ năng lực", "Hồ sơ pháp lý, chứng chỉ năng lực hoạt động xây dựng, giấy khen, máy móc thiết bị và năng lực tài chính.", "prj-tc-somuoi-1.jpg", "Năng lực")
     body += subnav([("phap-ly", "Hồ sơ pháp lý"), ("giay-khen", "Giấy khen"), ("thiet-bi", "Máy móc thiết bị"), ("tai-chinh", "Năng lực tài chính"), ("tai-ve", "Tải hồ sơ")])
@@ -732,7 +750,7 @@ def build_capability():
 
 <section class="section section-alt" id="tai-chinh">
   <div class="container">
-    {section_head("Năng lực tài chính", "Số liệu tài chính 3 năm gần nhất", "Đơn vị: VNĐ – theo Bảng cân đối kế toán và Báo cáo kết quả kinh doanh các năm 2023, 2024, 2025.")}
+    {section_head("Năng lực tài chính", f"Số liệu tài chính {len(FIN_YEARS)} năm gần nhất", f"Đơn vị: VNĐ – theo Bảng cân đối kế toán và Báo cáo kết quả kinh doanh các năm {years_text}.")}
     <div class="fin-cards">{fin_cards}</div>
     <div class="table-wrap reveal"><table class="data"><thead><tr><th>Chỉ tiêu</th>{"".join(f'<th style="text-align:right">Năm {y}</th>' for y in FIN_YEARS)}</tr></thead><tbody>{fin_rows}</tbody></table></div>
     <div class="card reveal" style="margin-top:2rem"><h3 style="text-align:center">Tổng doanh thu theo năm</h3><div class="bars">{bars}</div></div>
@@ -764,7 +782,7 @@ def build_projects():
         trs = "".join(
             f'<tr><td class="stt">{j+1}</td><td class="owner">{esc(o)}</td><td class="desc">{esc(d)}</td><td class="num">{money(v)}</td><td class="center"><span class="chip">{esc(g)}</span></td></tr>'
             for j, (o, d, v, g) in enumerate(rows))
-        big = max(rows, key=lambda r: r[2])
+        big = max(rows, key=lambda r: r[2], default=(None, None, 0, None))
         panels += f"""<div class="tab-panel{" active" if i == 0 else ""}" id="hd-{gid}">
   <div class="tab-summary">
     <div class="card"><div class="icon-box" style="margin:0">{ico('briefcase')}</div><div><div class="v">{len(rows)}</div><div class="l">hợp đồng</div></div></div>
@@ -780,11 +798,11 @@ def build_projects():
     features = ""
     for pid, group, name, owner, grade, specs, imgs in PROJECTS:
         media = "".join(
-            f'<a href="{IMG}{im}" data-lightbox="prj-{pid}" data-caption="{esc(name)}"><img src="{IMG}{im}" alt="{esc(name)} – ảnh {k+1}" loading="lazy"></a>'
+            f'<a href="{img_url(im)}" data-lightbox="prj-{pid}" data-caption="{esc(name)}"><img src="{img_url(im)}" alt="{esc(name)} – ảnh {k+1}" loading="lazy"></a>'
             for k, im in enumerate(imgs))
         spec = "".join(f"<li>{esc(s)}</li>" for s in specs)
         features += f"""<article class="feature reveal" id="prj-{pid}">
-  <div class="feature-media{' single' if len(imgs) == 1 else ''}">{media}</div>
+  <div class="feature-media{' single' if len(imgs) <= 1 else ''}">{media}</div>
   <div class="feature-body">
     <span class="badge static {group_chip(group)}">{esc(group)}</span>
     <h3>{esc(name)}</h3>

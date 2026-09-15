@@ -15,8 +15,9 @@ ansonjsc-website/
 ├── lien-he.html        Địa chỉ mới, điện thoại, e-mail, bản đồ Google, biểu mẫu liên hệ
 ├── 404.html            Trang báo lỗi không tìm thấy
 ├── sitemap.xml, robots.txt
+├── content/site.json   TOÀN BỘ NỘI DUNG các trang (thông tin công ty, nhân sự, thiết bị, hợp đồng, dự án…) – sửa qua trang quản trị
 ├── content/posts/      Bài viết dạng Markdown (mỗi bài một tệp .md) – do trang quản trị tạo
-├── admin/              Trang quản trị đăng bài / sửa bài (index.html, admin.js, config.js, auth.json)
+├── admin/              Trang quản trị: đăng bài / sửa bài (admin.js) và sửa nội dung trang (content.js); config.js, auth.json
 ├── .github/workflows/deploy.yml   Tự động sinh lại website & đưa lên GitHub Pages sau mỗi thay đổi
 ├── assets/
 │   ├── css/style.css   Toàn bộ giao diện (đáp ứng di động, in ấn)
@@ -25,8 +26,8 @@ ansonjsc-website/
 │   ├── uploads/        Ảnh do trang quản trị tải lên (theo năm)
 │   └── docs/ho-so-nang-luc-anson-2026.pdf   Bản PDF đầy đủ để tải về
 └── tools/
-    ├── site_data.py    TOÀN BỘ NỘI DUNG (thông tin công ty, nhân sự, thiết bị, hợp đồng, dự án…)
-    └── build_site.py   Script sinh lại các file .html từ site_data.py + content/posts
+    ├── site_data.py    Đọc content/site.json và chuẩn hoá dữ liệu cho script sinh trang
+    └── build_site.py   Script sinh lại các file .html từ content/site.json + content/posts
 ```
 
 ## 2. Bộ nhận diện (logo)
@@ -53,7 +54,9 @@ python -m http.server 8080
 
 ## 4. Cập nhật nội dung
 
-Tất cả số liệu nằm trong `tools/site_data.py` (mã hoá UTF-8). Sau khi sửa, chạy:
+**Cách dễ nhất:** dùng trang quản trị → mục **Nội dung trang** (xem §5.3). Mọi thứ hiển thị trên Trang chủ, Giới thiệu, Năng lực, Dự án, Liên hệ đều sửa được bằng biểu mẫu, không cần biết lập trình.
+
+Toàn bộ dữ liệu nằm trong một tệp duy nhất `content/site.json` (mã hoá UTF-8). Người quen kỹ thuật có thể sửa trực tiếp tệp này (trên GitHub hoặc trên máy) rồi chạy:
 
 ```powershell
 pip install markdown        # chỉ cần lần đầu
@@ -62,24 +65,24 @@ python tools\build_site.py
 
 Script sẽ ghi đè các trang, `tin-tuc/*.html`, `404.html`, `sitemap.xml`, `robots.txt`. **Không sửa trực tiếp các file .html** vì lần chạy sau sẽ mất thay đổi. Khi đã đưa lên GitHub, không cần chạy tay: mỗi lần đẩy thay đổi lên nhánh `main`, workflow `.github/workflows/deploy.yml` tự sinh lại website và xuất bản (1–2 phút).
 
-Các mục thường cần cập nhật:
+Các mục trong `content/site.json` (trùng với các mục ở trang quản trị):
 
-| Cần sửa | Biến trong `site_data.py` |
-|---|---|
-| Địa chỉ, điện thoại, e-mail, mã số thuế, vốn điều lệ | `COMPANY` |
-| Ban lãnh đạo | `LEADERS` |
-| Phòng ban & danh sách nhân sự | `DEPARTMENTS` |
-| Thiết bị, phần mềm | `EQUIP_OFFICE`, `EQUIP_SOFTWARE`, `EQUIP_SITE` |
-| Số liệu tài chính theo năm | `FIN_YEARS`, `FINANCE` |
-| Hợp đồng theo nhóm (thiết kế / giám sát / giám sát–thi công / thi công) | `CONTRACTS_A` … `CONTRACTS_D` |
-| Dự án tiêu biểu (tiêu đề, chủ đầu tư, mô tả, ảnh) | `PROJECTS`, `HOME_PROJECT_IDS` |
-| Giấy khen, hồ sơ pháp lý | `AWARDS`, `LEGAL` |
+| Cần sửa | Mục trong `site.json` | Hiển thị ở |
+|---|---|---|
+| Địa chỉ, điện thoại, e-mail, mã số thuế, vốn điều lệ, tệp PDF | `company` | Đầu/chân trang, Giới thiệu, Liên hệ |
+| Thư ngỏ, ngành nghề, sơ đồ tổ chức | `letter`, `fields`, `org` | Giới thiệu |
+| Ban lãnh đạo; phòng ban & danh sách nhân sự | `leaders`, `departments` | Giới thiệu |
+| Số liệu nổi bật, nhóm dịch vụ, giá trị cốt lõi, khách hàng | `stats`, `services`, `values`, `clients` | Trang chủ |
+| Hồ sơ pháp lý, giấy khen | `legal`, `awards` | Năng lực (giấy khen còn ở Trang chủ) |
+| Thiết bị, phần mềm; số liệu tài chính theo năm | `equipment`, `finance` | Năng lực |
+| Hợp đồng theo nhóm (mỗi nhóm một tab) | `contracts` | Dự án |
+| Công trình tiêu biểu (ảnh, thông số, thứ tự trang chủ `home`) | `projects` | Dự án, Trang chủ |
 
-Thêm ảnh dự án: chép ảnh JPG vào `assets/img/` (nên ≤ 1600 px, ≤ 400 KB) rồi khai báo tên tệp trong `PROJECTS`.
+Ảnh: ghi tên tệp trong `assets/img/` (vd. `prj-tk-phuhuu-1.jpg`) hoặc đường dẫn đầy đủ trong kho (vd. `assets/uploads/2026/anh.jpg`). Ảnh tải lên từ trang quản trị tự dùng dạng thứ hai.
 
-Thay PDF hồ sơ năng lực: ghi đè `assets/docs/ho-so-nang-luc-anson-2026.pdf` (hoặc đổi tên và sửa `COMPANY["pdf"]`).
+Thay PDF hồ sơ năng lực: nút **Thay tệp PDF** trong *Nội dung trang → Thông tin công ty* (ghi đè đúng tệp cũ), hoặc ghi đè `assets/docs/ho-so-nang-luc-anson-2026.pdf`.
 
-## 5. Trang quản trị – đăng bài, sửa bài
+## 5. Trang quản trị – đăng bài, sửa bài, sửa nội dung trang
 
 Địa chỉ: `https://<tên-miền>/admin/` (bản demo: <https://kien14593-lab.github.io/ansonjsc-website/admin/>). Trang quản trị chạy hoàn toàn trên trình duyệt, lưu bài viết thẳng vào kho GitHub qua API; không cần máy chủ hay cơ sở dữ liệu riêng.
 
@@ -99,9 +102,20 @@ Từ đó mọi người được cấp mật khẩu đăng nhập bằng **tên
 - Bài viết là tệp `content/posts/<slug>.md` gồm phần đầu (`title, date, category, cover, summary, published`) và nội dung Markdown; có thể sửa trực tiếp trên GitHub nếu cần. Liên kết tới trang khác trong website viết dạng `../lien-he.html`.
 - Danh mục sửa trong `admin/config.js` (`categories`) và `tools/build_site.py` (`POST_CATEGORIES`).
 
-### 5.3 Lưu ý bảo mật
+### 5.3 Sửa nội dung trang (Giới thiệu, Năng lực, Dự án, Liên hệ…)
 
-- Ai có mật khẩu (hoặc token) đều có thể đăng/sửa/xoá bài. Chỉ chia sẻ cho người phụ trách; khi cần thu hồi: xoá token tại GitHub → Settings → Developer settings → Personal access tokens, rồi thiết lập lại với token mới.
+Thanh trên cùng → **Nội dung trang**. Bên trái là danh sách các mục, nhóm theo trang hiển thị (Chung, Giới thiệu, Trang chủ, Năng lực, Dự án); bên phải là biểu mẫu của mục đang chọn.
+
+- Mục dạng danh sách (lãnh đạo, phòng ban, hợp đồng, công trình, giấy khen…): mỗi mục là một thẻ có thể mở/đóng; dùng ▲ ▼ để đổi thứ tự, ✕ để xoá, **+ Thêm …** ở cuối để thêm mới.
+- Bảng (nhân sự, thiết bị, hợp đồng, tài chính): sửa ngay trong ô; dòng để trống sẽ tự bị bỏ khi lưu. Giá trị tiền nhập bằng số, dấu chấm ngăn cách được tự thêm.
+- Ảnh: **Tải ảnh lên** / **+ Thêm ảnh** (nhiều ảnh cùng lúc; ảnh đầu của công trình là ảnh đại diện). Tệp PDF hồ sơ năng lực: **Thay tệp PDF** trong *Thông tin công ty*.
+- Công trình muốn hiện ở Trang chủ: điền **Thứ tự trang chủ** (1, 2, 3…); để trống thì chỉ hiện ở trang Dự án.
+- Có thể sửa nhiều mục rồi bấm **Lưu & cập nhật website** một lần; nhãn *Chưa lưu* nhắc còn thay đổi. Nút ⟳ tải lại bản trên kho và bỏ thay đổi chưa lưu. Sau khi lưu, website cập nhật sau 1–2 phút (thanh trạng thái báo khi xong).
+- Bản chất mỗi lần lưu là một lần ghi tệp `content/site.json` vào kho, nên lịch sử thay đổi xem được ở GitHub → *History* và khôi phục được khi cần.
+
+### 5.4 Lưu ý bảo mật
+
+- Ai có mật khẩu (hoặc token) đều có thể đăng/sửa/xoá bài và sửa nội dung trang. Chỉ chia sẻ cho người phụ trách; khi cần thu hồi: xoá token tại GitHub → Settings → Developer settings → Personal access tokens, rồi thiết lập lại với token mới.
 - Token bị giới hạn ở đúng kho website và chỉ quyền *Contents*, không ảnh hưởng tài khoản GitHub hay kho khác.
 
 ## 6. Đưa lên tên miền ansonjsc.com.vn

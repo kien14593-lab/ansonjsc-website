@@ -1,0 +1,1160 @@
+{
+  "company": {
+    "name": "CÔNG TY CỔ PHẦN AN SƠN",
+    "name_title": "Công ty Cổ phần An Sơn",
+    "name_en": "AN SON JOINT-STOCK COMPANY",
+    "short": "ANSON JSC",
+    "domain": "ansonjsc.com.vn",
+    "url": "https://ansonjsc.com.vn",
+    "address": "Số 448/1 Đường 448, Phường Tăng Nhơn Phú, TP. Hồ Chí Minh",
+    "address_short": "448/1 Đường 448, P. Tăng Nhơn Phú, TP.HCM",
+    "map_query": "448/1 Đường 448, Phường Tăng Nhơn Phú, Thành phố Hồ Chí Minh",
+    "tel1": "028.3730 5647",
+    "tel2": "028.3730 5648",
+    "fax": "028.3730 5648",
+    "hotline": "0903 600 205",
+    "email": "congtycpanson@gmail.com",
+    "capital": "2.000.000.000 đồng (Hai tỷ đồng)",
+    "tax": "0304870975",
+    "license": "Số 0304870975 do Sở Kế hoạch và Đầu tư TP. Hồ Chí Minh cấp lần đầu ngày 15/03/2007",
+    "founded": "15/03/2007",
+    "slogan": "Tiến độ – Chất lượng – Uy tín – Bền vững",
+    "ceo": "Ths. Trần Minh Nhật",
+    "pdf": "assets/docs/ho-so-nang-luc-anson-2026.pdf"
+  },
+  "letter": {
+    "intro": [
+      "Công ty Cổ phần An Sơn là một doanh nghiệp được thành lập với chức năng hoạt động về tư vấn khảo sát xây dựng, tư vấn đấu thầu, lập quy hoạch, lập dự án đầu tư, thiết kế xây dựng công trình, thẩm tra thiết kế và dự toán, giám sát thi công xây dựng; thi công xây dựng công trình giao thông, dân dụng, thủy lợi… theo Giấy chứng nhận đăng ký kinh doanh số 0304870975 (đăng ký lần đầu ngày 15/03/2007) do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp.",
+      "Trải qua hơn 18 năm hoạt động, đến nay Công ty Cổ phần An Sơn đã khẳng định được thương hiệu và quy mô hoạt động của mình trong lĩnh vực xây dựng công trình giao thông. Với đội ngũ cán bộ, chuyên gia giàu kinh nghiệm, cùng với sự phát triển của đất nước nói chung và ngành xây dựng nói riêng, chúng tôi không ngừng củng cố và nâng cao trình độ cho cán bộ công nhân viên, đồng thời ứng dụng công nghệ mới phù hợp với tiến bộ của khoa học kỹ thuật."
+    ],
+    "outro": [
+      "Với phương châm trên, chúng tôi tin rằng sẽ tạo dựng vững chắc thương hiệu của Công ty Cổ phần An Sơn. Ban Giám đốc cùng toàn thể cán bộ công nhân viên Công ty chân thành cảm ơn sự quan tâm, chia sẻ và hợp tác của Quý khách hàng. Chúng tôi tin vào định hướng chiến lược và sự nỗ lực không ngừng của tập thể cán bộ công nhân viên Công ty Cổ phần An Sơn sẽ là nền tảng vững chắc trong sự nghiệp phát triển của đất nước.",
+      "Trân trọng./."
+    ],
+    "signer_role": "Tổng Giám đốc",
+    "signer_name": "Trần Minh Nhật"
+  },
+  "stats": [
+    {
+      "value": 18,
+      "suffix": "+",
+      "label": "Năm kinh nghiệm"
+    },
+    {
+      "value": 50,
+      "suffix": "+",
+      "label": "Cán bộ, kỹ sư, cộng tác viên"
+    },
+    {
+      "value": 45,
+      "suffix": "+",
+      "label": "Hợp đồng đã & đang thực hiện"
+    },
+    {
+      "value": 120,
+      "suffix": "+ tỷ",
+      "label": "Tổng giá trị hợp đồng (VNĐ)"
+    }
+  ],
+  "services": [
+    {
+      "icon": "plan",
+      "title": "Lập dự án đầu tư & quy hoạch",
+      "desc": "Tư vấn chuẩn bị và lập báo cáo nghiên cứu khả thi (Pre-FS, FS), lập dự án đầu tư, thiết kế quy hoạch đô thị cho các dự án hạ tầng giao thông."
+    },
+    {
+      "icon": "survey",
+      "title": "Khảo sát địa hình – địa chất – thủy văn",
+      "desc": "Khảo sát phục vụ thiết kế với thiết bị toàn đạc điện tử TOPCON, kinh vĩ LEICA, thủy bình NIKON/SOKKIA; tư vấn giám sát công tác khảo sát."
+    },
+    {
+      "icon": "bridge",
+      "title": "Thiết kế công trình giao thông",
+      "desc": "Thiết kế bản vẽ thi công, lập dự toán cầu – đường bộ từ cấp IV đến cấp I: đường đô thị, cầu dầm BTCT DƯL, cầu vượt sông nhịp lớn."
+    },
+    {
+      "icon": "check",
+      "title": "Thẩm tra thiết kế & tư vấn đấu thầu",
+      "desc": "Thẩm tra thiết kế, thẩm tra dự toán – tổng dự toán; lập hồ sơ mời thầu, đánh giá hồ sơ dự thầu cho chủ đầu tư."
+    },
+    {
+      "icon": "eye",
+      "title": "Tư vấn giám sát thi công",
+      "desc": "Giám sát thi công công trình giao thông, hạ tầng kỹ thuật và khảo sát xây dựng cho các dự án cao tốc, vành đai, đường đô thị."
+    },
+    {
+      "icon": "build",
+      "title": "Thi công xây dựng công trình giao thông",
+      "desc": "Thi công sửa chữa, gia cường, mở rộng cầu (căng cáp DƯL ngoài, vải sợi carbon), kiểm định thử tải cầu, xây mới cầu và đường."
+    }
+  ],
+  "values": [
+    {
+      "icon": "clock",
+      "title": "Tiến độ",
+      "desc": "Tổ chức nhân lực và thiết bị hợp lý, cam kết hoàn thành đúng và vượt tiến độ hợp đồng."
+    },
+    {
+      "icon": "shield",
+      "title": "Chất lượng",
+      "desc": "Tuân thủ quy chuẩn – tiêu chuẩn, kiểm soát chất lượng chặt chẽ ở mọi giai đoạn thực hiện."
+    },
+    {
+      "icon": "handshake",
+      "title": "Uy tín",
+      "desc": "Hơn 18 năm đồng hành cùng các Ban QLDA, Sở GTVT và chủ đầu tư trên cả nước."
+    },
+    {
+      "icon": "leaf",
+      "title": "Bền vững",
+      "desc": "Ứng dụng công nghệ mới, phát triển đội ngũ, hướng tới giá trị lâu dài cho khách hàng và cộng đồng."
+    }
+  ],
+  "fields": [
+    "Tư vấn lập dự án đầu tư",
+    "Tư vấn thiết kế xây dựng công trình giao thông (cầu, đường bộ)",
+    "Tư vấn thẩm tra thiết kế và lập tổng dự toán công trình",
+    "Tư vấn đấu thầu",
+    "Tư vấn thiết kế quy hoạch đô thị",
+    "Khảo sát địa hình, địa chất, thủy văn xây dựng công trình",
+    "Tư vấn giám sát thi công xây dựng: giao thông (cầu, đường bộ)",
+    "Tư vấn giám sát thi công xây dựng: hạ tầng kỹ thuật",
+    "Tư vấn giám sát công tác khảo sát xây dựng",
+    "Thi công xây dựng công trình giao thông"
+  ],
+  "leaders": [
+    {
+      "name": "Bùi Thị Hiền",
+      "role": "Chủ tịch Hội đồng quản trị",
+      "degree": "Thạc sĩ"
+    },
+    {
+      "name": "Trần Minh Nhật",
+      "role": "Tổng Giám đốc",
+      "degree": "Thạc sĩ"
+    },
+    {
+      "name": "Đỗ Minh Khánh",
+      "role": "Phó Tổng Giám đốc – Trưởng phòng Khảo sát – Thiết kế",
+      "degree": "Thạc sĩ"
+    }
+  ],
+  "departments": [
+    {
+      "name": "Ban Giám đốc và cố vấn",
+      "head": "",
+      "staff": [
+        {
+          "name": "Ths. Bùi Thị Hiền",
+          "title": "Chủ tịch HĐQT"
+        },
+        {
+          "name": "Ths. Trần Minh Nhật",
+          "title": "Tổng Giám đốc"
+        },
+        {
+          "name": "Ths. Đỗ Minh Khánh",
+          "title": "Phó Tổng Giám đốc"
+        }
+      ]
+    },
+    {
+      "name": "Phòng Hành chính – Tổng hợp",
+      "head": "",
+      "staff": [
+        {
+          "name": "Lê Ngọc Cẩm Vân",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "Vi Thùy Dương",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "Nguyễn Thị Nga",
+          "title": "Nhân viên"
+        }
+      ]
+    },
+    {
+      "name": "Phòng Tài chính – Kế toán",
+      "head": "Kế toán trưởng: CN. Nguyễn Thị Kim Dung",
+      "staff": [
+        {
+          "name": "CN. Nguyễn Thị Kim Dung",
+          "title": "Kế toán trưởng"
+        },
+        {
+          "name": "CN. Hồ Trần Thị Thanh Thủy",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "CN. Nguyễn Thị Thu",
+          "title": "Cố vấn"
+        }
+      ]
+    },
+    {
+      "name": "Phòng Khảo sát – Thiết kế",
+      "head": "Trưởng phòng: Ths. Đỗ Minh Khánh · Phó phòng: KS. Nguyễn Hữu Hướng",
+      "staff": [
+        {
+          "name": "Ths. Đỗ Minh Khánh",
+          "title": "Trưởng phòng"
+        },
+        {
+          "name": "KS. Nguyễn Hữu Hướng",
+          "title": "Phó phòng"
+        },
+        {
+          "name": "KS. Trịnh Ngọc Hoàng",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Lâm Duy Tài",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Nguyễn Hoàng Tân",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Lã Hà Thẩm Kỳ",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Nguyễn Thị Quỳnh Trâm",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Trần Thị Thanh Huyền",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Võ Quốc Tuấn",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Hồ Thị Oanh",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Nguyễn Sĩ Vinh",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "Ths. Trần Thanh Tú",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Vũ Hoàng Anh",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Phạm Lê Thanh Tú",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KTS. Huỳnh Văn Dung",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "CN. Nguyễn Đăng Khoa",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Đỗ Tiến Khoa",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Đậu Thiện Lương",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "Ths. Vũ Trọng Thuật",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Phạm Châu Long",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Đinh Văn Hạnh",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "TS. Nguyễn Quang Dũng",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Nguyễn Thị Minh",
+          "title": "Cộng tác viên"
+        },
+        {
+          "name": "KS. Vũ Minh Tân",
+          "title": "Cộng tác viên"
+        }
+      ]
+    },
+    {
+      "name": "Phòng Kỹ thuật – Giám sát",
+      "head": "Phụ trách: KS. Trần Duy Tân · KS. Vũ Trường Thi",
+      "staff": [
+        {
+          "name": "KS. Trần Duy Tân",
+          "title": "Phụ trách"
+        },
+        {
+          "name": "KS. Vũ Trường Thi",
+          "title": "Phụ trách"
+        },
+        {
+          "name": "KS. Phạm Quốc Tuấn",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Phạm Xuân Bưởi",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Nguyễn Trung Tuyến",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Huỳnh Tấn Thanh",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Đỗ Văn Hiếu",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Huỳnh Quang Tuấn",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Võ Lê Duy Khánh",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "Ths. Nguyễn Quý Long",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Hoàng Mạnh Toàn",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Hoàng Bảo Vũ",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Châu Tiếng Tri",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Đoàn Võ Anh Duy",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Nguyễn Hữu Phước Thành",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Trần Sinh",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Đặng Trọng Phúc",
+          "title": "Nhân viên"
+        },
+        {
+          "name": "KS. Nguyễn Thành Trung",
+          "title": "Nhân viên"
+        }
+      ]
+    }
+  ],
+  "org": {
+    "left": [
+      "Phòng Hành chính",
+      "Phòng Kinh doanh",
+      "Phòng Tài chính – Kế toán",
+      "Phòng Kỹ thuật"
+    ],
+    "left_team": "Đội thi công",
+    "right": [
+      "Phòng Khảo sát – Thiết kế",
+      "Phòng Quản lý chất lượng",
+      "Phòng Giám sát"
+    ]
+  },
+  "equipment": {
+    "office": [
+      {
+        "name": "Máy vi tính",
+        "unit": "Bộ",
+        "qty": 25
+      },
+      {
+        "name": "Máy in từ A4 – A0",
+        "unit": "Cái",
+        "qty": 1
+      },
+      {
+        "name": "Máy in A4",
+        "unit": "Cái",
+        "qty": 4
+      },
+      {
+        "name": "Máy scanner",
+        "unit": "Cái",
+        "qty": 1
+      },
+      {
+        "name": "Máy photocopy",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy fax",
+        "unit": "Cái",
+        "qty": 1
+      }
+    ],
+    "software": [
+      {
+        "name": "Phần mềm kế toán Việt Nam",
+        "unit": "Khóa cứng",
+        "qty": 1
+      },
+      {
+        "name": "Phần mềm văn phòng điện tử Portaloffice",
+        "unit": "Khóa cứng",
+        "qty": 1
+      },
+      {
+        "name": "Phần mềm khảo sát thiết kế tổng hợp ANDDesign 2008",
+        "unit": "Khóa cứng",
+        "qty": 1
+      },
+      {
+        "name": "Phần mềm tính toán đơn giá dự toán DELTA",
+        "unit": "Khóa cứng",
+        "qty": 2
+      }
+    ],
+    "site": [
+      {
+        "name": "Máy hàn",
+        "unit": "Cái",
+        "qty": 1
+      },
+      {
+        "name": "Máy khoan bê tông cầm tay",
+        "unit": "Cái",
+        "qty": 3
+      },
+      {
+        "name": "Máy nén khí PUMA PX-1090",
+        "unit": "Cái",
+        "qty": 1
+      },
+      {
+        "name": "Máy cắt uốn liên hợp Gate GQW-40",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy toàn đạc điện tử TOPCON",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy kinh vĩ điện tử LEICA T110 + chân máy + mia",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy thủy bình NIKON AX-2S + chân máy + mia",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy đục phá bê tông Maktec MT 875",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy khoan rút lõi bê tông Ken 6130",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Kích căng kéo YDC 250 QX-200",
+        "unit": "Bộ",
+        "qty": 2
+      },
+      {
+        "name": "Máy bơm nước",
+        "unit": "Cái",
+        "qty": 1
+      },
+      {
+        "name": "Máy trộn bê tông + motor 350L-QT",
+        "unit": "Bộ",
+        "qty": 2
+      },
+      {
+        "name": "Máy cắt cầm tay LSTON JSD-1201",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Máy hàn điện Hồng Ký 400A",
+        "unit": "Cái",
+        "qty": 2
+      },
+      {
+        "name": "Tời điện ZKCRANE 5 tấn",
+        "unit": "Bộ",
+        "qty": 1
+      },
+      {
+        "name": "Palăng xích kéo tay 3 tấn",
+        "unit": "Bộ",
+        "qty": 1
+      },
+      {
+        "name": "Máy cắt cáp HHYD-50A 12KW",
+        "unit": "Bộ",
+        "qty": 1
+      },
+      {
+        "name": "Máy luồn cáp 20KW",
+        "unit": "Bộ",
+        "qty": 1
+      },
+      {
+        "name": "Máy siêu âm cốt thép Matest C369",
+        "unit": "Bộ",
+        "qty": 1
+      },
+      {
+        "name": "Loa cầm tay",
+        "unit": "Cái",
+        "qty": 3
+      },
+      {
+        "name": "Bộ đàm",
+        "unit": "Cái",
+        "qty": 3
+      },
+      {
+        "name": "Máy thủy bình tự động SOKKIA C32 + chân máy",
+        "unit": "Bộ",
+        "qty": 1
+      }
+    ]
+  },
+  "finance": {
+    "years": [
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "rows": [
+      {
+        "label": "Tổng tài sản",
+        "values": [
+          7681467303,
+          6266167206,
+          6686134779
+        ]
+      },
+      {
+        "label": "Tổng nợ",
+        "values": [
+          5615310928,
+          4232628769,
+          4340606230
+        ]
+      },
+      {
+        "label": "Giá trị tài sản ròng",
+        "values": [
+          2066156375,
+          2033538437,
+          2345528549
+        ]
+      },
+      {
+        "label": "Tổng doanh thu",
+        "values": [
+          13285171327,
+          6206769494,
+          15672951851
+        ]
+      },
+      {
+        "label": "Lợi nhuận sau thuế",
+        "values": [
+          59299149,
+          26681241,
+          338671353
+        ]
+      }
+    ]
+  },
+  "contracts": [
+    {
+      "id": "tk",
+      "title": "Tư vấn khảo sát – lập DAĐT – TKBVTC – dự toán",
+      "short": "Thiết kế",
+      "items": [
+        {
+          "client": "CN Công ty Tư vấn Triển khai Công nghệ và Xây dựng Giao thông",
+          "scope": "Tư vấn khảo sát, lập dự án đầu tư, thiết kế bản vẽ thi công và lập dự toán. Công trình: Xây dựng đường nối từ đường Nguyễn Duy Trinh vào KCN Phú Hữu, Phường Phú Hữu, Quận 9, TP.HCM",
+          "value": 3569311000,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+          "scope": "Tư vấn chuẩn bị nghiên cứu khả thi (bước Pre-FS) Phát triển giao thông xanh TP.HCM",
+          "value": 1270000000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+          "scope": "Tư vấn lập dự án đầu tư xây dựng công trình (bước Nghiên cứu khả thi FS) Phát triển giao thông xanh TP.HCM",
+          "value": 2290310300,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLĐTXD công trình Quận Thủ Đức",
+          "scope": "Tư vấn lập thiết kế BVTC Nâng cấp, mở rộng đường Trường Thọ, Phường Trường Thọ, Quận Thủ Đức",
+          "value": 1579764000,
+          "grade": "III"
+        },
+        {
+          "client": "CN Công ty Tư vấn Triển khai Công nghệ và Xây dựng Giao thông",
+          "scope": "Cung cấp dịch vụ Giao thông đô thị bền vững hợp nhất (CS4) do Ngân hàng Phát triển Châu Á (ADB) tài trợ",
+          "value": 4643168000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLDA ĐTXD ngành Giao thông tỉnh Tây Ninh",
+          "scope": "Tư vấn khảo sát và lập thiết kế bản vẽ thi công – dự toán, công trình: Đường Đất Sét – Bến Củi, Tây Ninh",
+          "value": 822977000,
+          "grade": "IV"
+        },
+        {
+          "client": "Ban QLĐTXD công trình Quận 2",
+          "scope": "Tư vấn khảo sát và lập thiết kế bản vẽ thi công – dự toán, dự án: Xây dựng đường Nguyễn Duy Trinh (đoạn từ cầu Giồng Ông Tố đến cầu Xây Dựng), Quận 2",
+          "value": 2900000000,
+          "grade": "III"
+        },
+        {
+          "client": "Ban QLDA ĐTXD tỉnh Bình Dương",
+          "scope": "Tư vấn lập báo cáo nghiên cứu khả thi dự án: Xây dựng đường và cầu kết nối tỉnh Bình Dương và tỉnh Tây Ninh",
+          "value": 724893000,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLDA ĐTXD tỉnh Bình Dương",
+          "scope": "Tư vấn khảo sát, lập thiết kế bản vẽ thi công và dự toán dự án: Xây dựng đường và cầu kết nối tỉnh Bình Dương và tỉnh Tây Ninh",
+          "value": 4449363385,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLDA ĐTXD khu vực huyện An Biên",
+          "scope": "Tư vấn khảo sát, lập báo cáo nghiên cứu khả thi dự án Đường kết nối đê bao ven biển với Cầu Thứ Ba",
+          "value": 3136139306,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLDA ĐTXD công trình giao thông và Nông nghiệp tỉnh An Giang",
+          "scope": "Tư vấn khảo sát, TKBVTC – dự toán hạng mục công trình chính (phần cầu, đường vào cầu, hệ thống chiếu sáng, bến phà tạm) thuộc dự án Cầu Phú Vĩnh",
+          "value": 1036100000,
+          "grade": "III"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông tỉnh Bình Thuận",
+          "scope": "Tư vấn khảo sát, lập thiết kế bản vẽ thi công – dự toán và cắm cọc giải phóng mặt bằng công trình (kể cả chi phí dự phòng). Dự án: Nâng cấp, mở rộng đường Bà Tá – Trà Tân",
+          "value": 1292849000,
+          "grade": "III"
+        },
+        {
+          "client": "Vườn Quốc gia Phú Quốc",
+          "scope": "Tư vấn khảo sát địa hình, địa chất, lập thiết kế BVTC và dự toán thuộc Dự án: Xây dựng tuyến đường vành đai bao quanh Vườn Quốc gia Phú Quốc, giai đoạn I",
+          "value": 2096290219,
+          "grade": "IV"
+        },
+        {
+          "client": "Ban QLDA và Phát triển quỹ đất huyện Đắk Song",
+          "scope": "Tư vấn khảo sát, lập TKBVTC – dự toán Dự án Đường ven hồ Đắk R'Lon, thị trấn Đức An đi xã Nam Bình, huyện Đắk Song",
+          "value": 920238000,
+          "grade": "III"
+        }
+      ]
+    },
+    {
+      "id": "gsks",
+      "title": "Tư vấn giám sát khảo sát xây dựng",
+      "short": "Giám sát khảo sát",
+      "items": [
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát khảo sát giai đoạn lập Báo cáo nghiên cứu khả thi Dự án thành phần 2: Đầu tư xây dựng đường gom dân sinh, cầu vượt ngang đường cao tốc (cao tốc TP. Hồ Chí Minh – Mộc Bài)",
+          "value": 168830000,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát khảo sát giai đoạn lập Báo cáo nghiên cứu khả thi Dự án thành phần 1: Đầu tư xây dựng đường cao tốc TP. Hồ Chí Minh – Mộc Bài (giai đoạn 1) theo phương thức đối tác công tư (hợp đồng BOT)",
+          "value": 526980000,
+          "grade": "Đặc biệt"
+        },
+        {
+          "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+          "scope": "Tư vấn giám sát khảo sát – giai đoạn thiết kế chi tiết Dự án: Phát triển giao thông xanh TP. Hồ Chí Minh",
+          "value": 431920000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát khảo sát bước lập Báo cáo nghiên cứu khả thi dự án thành phần 1: Xây dựng đường Vành đai 3 đoạn qua TP.HCM (bao gồm kênh Thầy Thuốc)",
+          "value": 685000000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+          "scope": "Tư vấn giám sát khảo sát – giai đoạn điều chỉnh nghiên cứu khả thi và thiết kế chi tiết Dự án: Phát triển giao thông xanh TP. Hồ Chí Minh",
+          "value": 132246000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban Quản lý Dự án 7",
+          "scope": "Tư vấn giám sát khảo sát bước thiết kế kỹ thuật, Dự án thành phần đầu tư xây dựng đoạn Vĩnh Hảo – Phan Thiết thuộc Dự án xây dựng một số đoạn đường bộ cao tốc trên tuyến Bắc – Nam phía Đông giai đoạn 2017–2020",
+          "value": 559237800,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát khảo sát bước lập thiết kế kỹ thuật Dự án thành phần 2: Đầu tư xây dựng đường gom dân sinh, cầu vượt ngang đường cao tốc (cao tốc TP. Hồ Chí Minh – Mộc Bài)",
+          "value": 388711000,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát công tác khảo sát bước lập BCNCKT thuộc dự án DATP 2-3: Xây dựng đường cao tốc đoạn từ sông Sài Gòn đến kênh Thầy Cai (bao gồm cầu Phú Thuận qua sông Sài Gòn và cầu Thầy Cai qua kênh Thầy Cai) thuộc dự án đầu tư xây dựng Vành đai 4 TP.HCM",
+          "value": 214900651,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát công tác khảo sát bước lập BCNCKT thuộc dự án DATP 3: Đầu tư xây dựng đường song hành và đường kết nối vào Khu liên hợp đường Vành đai 4 TP. Hồ Chí Minh đoạn từ cầu Thủ Biên – sông Sài Gòn",
+          "value": 69000000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát khảo sát bước lập BCNCKT thuộc Dự án Đầu tư nút giao thông kết nối đường cao tốc Bến Lức – Long Thành với đường Rừng Sác, huyện Cần Giờ",
+          "value": 138916714,
+          "grade": "Đặc biệt"
+        },
+        {
+          "client": "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+          "scope": "Tư vấn giám sát khảo sát bước lập TKBVTC thuộc Dự án Đầu tư nút giao thông kết nối đường cao tốc Bến Lức – Long Thành với đường Rừng Sác, huyện Cần Giờ",
+          "value": 423327868,
+          "grade": "Đặc biệt"
+        }
+      ]
+    },
+    {
+      "id": "gstc",
+      "title": "Tư vấn giám sát thi công xây dựng",
+      "short": "Giám sát thi công",
+      "items": [
+        {
+          "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+          "scope": "Tư vấn giám sát thi công kết cấu áo đường, xử lý trồi nhựa mặt đường nhánh C nút giao Cát Lái, Quận 2",
+          "value": 306805000,
+          "grade": "I"
+        },
+        {
+          "client": "Ban QLDA ĐTXD Thành phố Thuận An",
+          "scope": "Tư vấn giám sát thi công xây dựng đường giao thông và hệ thống chiếu sáng, đèn tín hiệu giao thông công trình: Nâng cấp, mở rộng tuyến đường D2, N9 khu dân cư Thuận Giao",
+          "value": 1014906750,
+          "grade": "III"
+        },
+        {
+          "client": "Công ty CP Đầu tư và Xây dựng Xa lộ Hà Nội",
+          "scope": "Tư vấn giám sát thi công Đường song hành phải, đoạn từ cầu Rạch Chiếc đến UBND Quận 9 thuộc dự án mở rộng Xa lộ Hà Nội",
+          "value": 725000000,
+          "grade": "II"
+        },
+        {
+          "client": "Ban QLDA ĐTXD công trình giao thông tỉnh Bình Dương",
+          "scope": "Tư vấn giám sát thi công xây dựng Dự án: Xây dựng cầu bắc qua sông Đồng Nai (cầu Bạch Đằng 2) – Dự án 2: Xây dựng cầu vượt sông Đồng Nai",
+          "value": 1719582000,
+          "grade": "II"
+        },
+        {
+          "client": "Sở Giao thông Vận tải tỉnh Kiên Giang",
+          "scope": "Tư vấn giám sát thi công xây dựng gói thầu số 01 thuộc Dự án: Đầu tư xây dựng công trình đường 3/2 nối dài (đường bộ ven biển tỉnh Kiên Giang – đoạn qua TP. Rạch Giá và huyện Châu Thành)",
+          "value": 618370200,
+          "grade": "II"
+        },
+        {
+          "client": "Chi nhánh Công ty TNHH Tư vấn và Xây dựng ĐH GTVT",
+          "scope": "Gói thầu số 37: Tư vấn giám sát thi công xây lắp công trình (đoạn từ Km43+500 đến cuối Dự án thành phần 1) thuộc Dự án thành phần 1 – Dự án đầu tư xây dựng đường bộ cao tốc Châu Đốc – Cần Thơ – Sóc Trăng (giai đoạn 1)",
+          "value": 2129344000,
+          "grade": "I"
+        },
+        {
+          "client": "Sở Xây dựng An Giang",
+          "scope": "Tư vấn giám sát thi công xây dựng dự án: Đầu tư xây dựng công trình Ngầm hóa hạ tầng kỹ thuật khu vực Dương Đông, TP. Phú Quốc, tỉnh Kiên Giang (nay là đặc khu Phú Quốc, tỉnh An Giang)",
+          "value": 2483669385,
+          "grade": "III"
+        }
+      ]
+    },
+    {
+      "id": "tc",
+      "title": "Thi công xây dựng công trình",
+      "short": "Thi công",
+      "items": [
+        {
+          "client": "Trung tâm QLDA và TVXD CTGT Bình Thuận",
+          "scope": "Thi công xây dựng công trình Sửa chữa, nâng cấp Cầu Trần Hưng Đạo, TP. Phan Thiết – Gói thầu số 01: Xây lắp toàn bộ công trình",
+          "value": 3397402708,
+          "grade": "IV"
+        },
+        {
+          "client": "Công ty CP VTTB và XDCT 624",
+          "scope": "Thi công xây dựng công trình: Đường ĐT.782 đoạn từ ngã ba Cây Me đến ngã ba Bàu Đồn – Hạng mục: Cầu Bến Sắn",
+          "value": 9035828000,
+          "grade": "III"
+        },
+        {
+          "client": "Công ty TNHH Hoa Mai",
+          "scope": "Thi công Nâng cấp đường gom KCN Bourbon An Hòa (đoạn đường 787A từ Km0 – Km5) – Hạng mục: Gia tải Cầu Quan",
+          "value": 4507815000,
+          "grade": "IV"
+        },
+        {
+          "client": "Sở GTVT Tây Ninh",
+          "scope": "Thi công bảo trì đường Bourbon",
+          "value": 5038864000,
+          "grade": "IV"
+        },
+        {
+          "client": "Ban QLDA Quốc lộ 55 – Sở GTVT Bình Thuận",
+          "scope": "Thi công xây dựng công trình Sửa chữa, mở rộng cầu Sở Muối, TP. Phan Thiết – Gói thầu số 01: Xây lắp toàn bộ công trình (kể cả đảm bảo an toàn giao thông)",
+          "value": 4313295267,
+          "grade": "IV"
+        },
+        {
+          "client": "Sở GTVT Tây Ninh",
+          "scope": "Thi công công trình: Kiểm định, gia cường nâng tải trọng khai thác Cầu Sài Gòn ĐT.781, huyện Dương Minh Châu, tỉnh Tây Ninh",
+          "value": 4103441000,
+          "grade": "IV"
+        },
+        {
+          "client": "Sở GTVT An Giang",
+          "scope": "Thi công công trình: Sửa chữa, mở rộng mặt cầu Tôn Đức Thắng, TP. Long Xuyên, tỉnh An Giang",
+          "value": 7128351000,
+          "grade": "III"
+        },
+        {
+          "client": "Khu Quản lý giao thông đô thị số 3",
+          "scope": "Thi công công trình: Sửa chữa vừa mặt cầu An Lộc, quận Gò Vấp, TP.HCM",
+          "value": 9254883000,
+          "grade": "IV"
+        },
+        {
+          "client": "Sở Giao thông Vận tải tỉnh Bình Dương",
+          "scope": "Thi công cải tạo, sửa chữa công trình thuộc công trình: Cải tạo, sửa chữa cầu Ông Cộ trên ĐT.744",
+          "value": 13178121578,
+          "grade": "IV"
+        },
+        {
+          "client": "Ban Quản lý bảo trì đường bộ Bình Thuận – Sở GTVT Bình Thuận",
+          "scope": "Thi công xây dựng công trình Sửa chữa cầu Ké, TP. Phan Thiết",
+          "value": 3884544798,
+          "grade": "IV"
+        },
+        {
+          "client": "Ban Quản lý bảo trì đường bộ Bình Thuận – Sở GTVT Bình Thuận",
+          "scope": "Thi công xây dựng công trình Sửa chữa cầu Dục Thanh, TP. Phan Thiết",
+          "value": 7244447711,
+          "grade": "IV"
+        },
+        {
+          "client": "Sở GTVT Tây Ninh",
+          "scope": "Thi công công trình: Kiểm định thử tải cầu, gia cường nâng tải trọng cầu",
+          "value": 3702716000,
+          "grade": "IV"
+        },
+        {
+          "client": "Trung tâm Phát triển Hạ tầng Kỹ thuật TP. Thủ Đức",
+          "scope": "Xây lắp (bao gồm chi phí đảm bảo an toàn giao thông và dự phòng phí) Dự án Xây dựng mới cầu Rạch Môn trên đường 12 (khu dân cư Phú Nhuận), phường Hiệp Bình Chánh",
+          "value": 9217813363,
+          "grade": "IV"
+        }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "phuhuu",
+      "group": "Thiết kế",
+      "title": "Đường nối từ đường Nguyễn Duy Trinh vào KCN Phú Hữu",
+      "client": "Công ty Cổ phần Xi măng Hà Tiên 1",
+      "grade": "Cấp II",
+      "specs": [
+        "Chiều dài tuyến 2,626 km; bề rộng mặt cắt ngang 30 m",
+        "Kết cấu mặt đường: tấm BTXM M350 dày 24 cm, 2 lớp giấy dầu tạo phẳng, đá dăm gia cố 6% xi măng dày 18 cm, vải địa kỹ thuật phân cách",
+        "Nền đường gia cố bằng cọc đất gia cố xi măng",
+        "Cống hộp thoát nước 3×3 m; cây xanh; chiếu sáng"
+      ],
+      "images": [
+        "prj-tk-phuhuu-1.jpg",
+        "prj-tk-phuhuu-2.jpg"
+      ],
+      "home": 5
+    },
+    {
+      "id": "truongtho",
+      "group": "Thiết kế",
+      "title": "Nâng cấp, mở rộng đường Trường Thọ, Quận Thủ Đức",
+      "client": "Ban QLĐTXD công trình Quận Thủ Đức",
+      "grade": "Cấp III",
+      "specs": [
+        "Chiều dài tuyến 2.220 m; mặt đường rộng 11 m; vỉa hè 4,5 m × 2 bên",
+        "Đường đô thị cấp III, tốc độ tính toán 60 km/h",
+        "Cầu 3 nhịp × 20 m, chiều dài toàn cầu 60,8 m",
+        "Hệ thống cây xanh, chiếu sáng"
+      ],
+      "images": [
+        "prj-tk-truongtho-1.jpg",
+        "prj-tk-truongtho-2.jpg"
+      ],
+      "home": 0
+    },
+    {
+      "id": "gtxanh",
+      "group": "Thiết kế",
+      "title": "Đầu tư Phát triển giao thông xanh TP.HCM (bước FS)",
+      "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+      "grade": "Cấp I",
+      "specs": [
+        "Tuyến BRT từ vòng xoay An Lạc đến ga Rạch Chiếc, chiều dài 23 km",
+        "Vận tốc thiết kế 60 km/h; bề rộng phần xe chạy 3,5 m",
+        "28 trạm dừng; 17 cầu bộ hành"
+      ],
+      "images": [
+        "prj-tk-gtxanh-1.jpg",
+        "prj-tk-gtxanh-2.jpg"
+      ],
+      "home": 2
+    },
+    {
+      "id": "bdtn",
+      "group": "Thiết kế",
+      "title": "Đường và cầu kết nối tỉnh Bình Dương và tỉnh Tây Ninh",
+      "client": "Ban QLDA ĐTXD tỉnh Bình Dương",
+      "grade": "Cấp II",
+      "specs": [
+        "Điểm đầu tại nút giao ĐT.744, điểm cuối nối đường Đất Sét – Bến Củi",
+        "Chiều dài 800 m; bề rộng 25,5 m; vận tốc thiết kế 80 km/h",
+        "Sơ đồ nhịp: 3×39,1 m + 48 m + 72 m + 48 m + 3×39,1 m"
+      ],
+      "images": [
+        "prj-tk-bdtn-1.jpg",
+        "prj-tk-bdtn-2.jpg"
+      ],
+      "home": 1
+    },
+    {
+      "id": "catlai",
+      "group": "Giám sát",
+      "title": "TVGS thi công kết cấu áo đường nhánh C nút giao Cát Lái, Quận 2",
+      "client": "Ban QLĐTXD công trình giao thông đô thị Thành phố",
+      "grade": "Cấp I",
+      "specs": [
+        "Vận tốc thiết kế 60 km/h; 2 làn xe cơ giới",
+        "Kết cấu mặt đường BTXM; xử lý trồi nhựa mặt đường",
+        "Cống hộp thoát nước 2,0×2,0 m; bó vỉa, cây xanh, chiếu sáng"
+      ],
+      "images": [
+        "prj-gs-catlai-1.jpg",
+        "prj-gs-catlai-2.jpg"
+      ],
+      "home": 0
+    },
+    {
+      "id": "xlhn",
+      "group": "Giám sát",
+      "title": "TVGS thi công Đường song hành phải Xa lộ Hà Nội",
+      "client": "Công ty CP Đầu tư và Xây dựng Xa lộ Hà Nội",
+      "grade": "Cấp II",
+      "specs": [
+        "Đoạn từ cầu Rạch Chiếc đến UBND Quận 9; chiều dài 2,975 km",
+        "Mặt cắt ngang 18 m; mặt đường cấp cao A1; vận tốc thiết kế 60 km/h",
+        "Hệ thống thoát nước, bó vỉa, vỉa hè, cây xanh, chiếu sáng"
+      ],
+      "images": [
+        "prj-gs-xlhn-1.jpg",
+        "prj-gs-xlhn-2.jpg"
+      ],
+      "home": 6
+    },
+    {
+      "id": "binhlong",
+      "group": "Giám sát",
+      "title": "TVGS thi công cải tạo hệ thống thoát nước đường Bình Long",
+      "client": "Ban QLDA cải tạo kênh Ba Bò",
+      "grade": "Cấp I",
+      "specs": [
+        "Xây mới hệ thống thoát nước tải trọng H30-XB80, khẩu độ D1000, D1200 và cống hộp 2,5×2,5 m; cống ngang D600",
+        "Tái lập phui đào và thảm BTN toàn bộ mặt đường",
+        "Xây mới bó vỉa, vỉa hè lát gạch Terrazzo"
+      ],
+      "images": [
+        "prj-gs-binhlong-1.jpg",
+        "prj-gs-binhlong-2.jpg"
+      ],
+      "home": 0
+    },
+    {
+      "id": "tranhungdao",
+      "group": "Thi công",
+      "title": "Sửa chữa, nâng cấp cầu Trần Hưng Đạo, TP. Phan Thiết",
+      "client": "Trung tâm QLDA và TVXD CTGT Bình Thuận",
+      "grade": "Cấp IV",
+      "specs": [
+        "Chiều dài cầu 138 m (9 nhịp BTCT thường 15,2 m); rộng 19,2 m",
+        "Tăng cường dầm chủ bằng vải sợi carbon; bọc cọc trụ cầu",
+        "Thảm BTN mặt cầu, đường dẫn; thay mới lan can, lề bộ hành, thoát nước, chiếu sáng, cấp nước"
+      ],
+      "images": [
+        "prj-tc-tranhungdao-1.jpg",
+        "prj-tc-tranhungdao-2.jpg"
+      ],
+      "home": 0
+    },
+    {
+      "id": "somuoi",
+      "group": "Thi công",
+      "title": "Sửa chữa, mở rộng cầu Sở Muối, TP. Phan Thiết",
+      "client": "Ban QLDA Quốc lộ 55 – Sở GTVT Bình Thuận",
+      "grade": "Cấp IV",
+      "specs": [
+        "Sửa chữa cầu cũ 2 nhịp 24,7 m (dài 50,2 m, rộng 9,87 m): tăng cường dầm ngang, căng cáp DƯL ngoài",
+        "Xây mới 1 cầu kế bên: hệ dầm 18,6 m, rộng 9,87 m",
+        "Tổng bề rộng cầu sau mở rộng 19,74 m; tải trọng thiết kế HL93"
+      ],
+      "images": [
+        "prj-tc-somuoi-1.jpg",
+        "prj-tc-somuoi-2.jpg"
+      ],
+      "home": 0
+    },
+    {
+      "id": "tonducthang",
+      "group": "Thi công",
+      "title": "Sửa chữa, mở rộng mặt cầu Tôn Đức Thắng, TP. Long Xuyên",
+      "client": "Sở GTVT An Giang",
+      "grade": "Cấp III",
+      "specs": [
+        "Hoạt tải thiết kế H18-XB60, bộ hành 3 kN/m²",
+        "Sơ đồ nhịp: 4×24,54 m + 3×33 m + 3×24,54 m",
+        "Mở rộng mặt cầu từ 9 m lên 11,5 m; tăng cường dầm ngang; căng cáp DƯL ngoài; thay khe co giãn; cào bóc và thảm mới BTN"
+      ],
+      "images": [
+        "prj-tc-tonducthang-1.jpg",
+        "prj-tc-tonducthang-2.jpg"
+      ],
+      "home": 4
+    },
+    {
+      "id": "ongco",
+      "group": "Thi công",
+      "title": "Cải tạo, sửa chữa cầu Ông Cộ trên ĐT.744",
+      "client": "Sở Giao thông Vận tải tỉnh Bình Dương",
+      "grade": "Cấp IV",
+      "specs": [
+        "Hoạt tải thiết kế HL93, bộ hành 3 kN/m²; sơ đồ nhịp 5×24,54 m",
+        "Thay mới kết cấu phần trên (dầm chủ, bản mặt cầu, BTN); sửa chữa kết cấu phần dưới (thân, mố, xà mũ trụ)",
+        "Bề rộng 8,8 m; thay khe co giãn; cào bóc, thảm mới BTN; cải tạo đường đầu cầu"
+      ],
+      "images": [
+        "prj-tc-ongco-1.jpg",
+        "prj-tc-ongco-2.jpg"
+      ],
+      "home": 3
+    }
+  ],
+  "awards": [
+    {
+      "image": "award-1.jpg",
+      "title": "Giấy khen Sở GTVT Tây Ninh",
+      "desc": "Ghi nhận đóng góp trong công tác xây dựng, bảo trì công trình giao thông tỉnh Tây Ninh."
+    },
+    {
+      "image": "award-2.jpg",
+      "title": "Giấy khen UBND tỉnh An Giang",
+      "desc": "Ghi nhận thành tích thi công công trình giao thông trên địa bàn tỉnh An Giang."
+    },
+    {
+      "image": "award-3.jpg",
+      "title": "Giấy khen Sở GTVT Kiên Giang",
+      "desc": "Ghi nhận thành tích trong công tác tư vấn giám sát công trình giao thông tỉnh Kiên Giang."
+    }
+  ],
+  "legal": [
+    {
+      "image": "legal-1.jpg",
+      "title": "Giấy chứng nhận đăng ký doanh nghiệp"
+    },
+    {
+      "image": "legal-2.jpg",
+      "title": "Chứng chỉ năng lực hoạt động xây dựng (1)"
+    },
+    {
+      "image": "legal-3.jpg",
+      "title": "Chứng chỉ năng lực hoạt động xây dựng (2)"
+    },
+    {
+      "image": "legal-4.jpg",
+      "title": "Chứng chỉ năng lực hoạt động xây dựng (3)"
+    },
+    {
+      "image": "legal-5.jpg",
+      "title": "Chứng chỉ năng lực hoạt động xây dựng (4)"
+    },
+    {
+      "image": "legal-6.jpg",
+      "title": "Chứng chỉ năng lực hoạt động xây dựng (5)"
+    }
+  ],
+  "clients": [
+    "Ban QLDA ĐTXD các công trình giao thông TP.HCM",
+    "Ban QLĐTXD công trình giao thông đô thị TP.HCM",
+    "Ban Quản lý Dự án 7 (Bộ GTVT)",
+    "Sở GTVT Tây Ninh",
+    "Sở GTVT Bình Thuận",
+    "Sở GTVT An Giang",
+    "Sở GTVT Kiên Giang",
+    "Sở GTVT Bình Dương",
+    "Ban QLDA ĐTXD tỉnh Bình Dương",
+    "Sở Xây dựng An Giang",
+    "Trung tâm Phát triển Hạ tầng Kỹ thuật TP. Thủ Đức",
+    "Công ty CP Xi măng Hà Tiên 1",
+    "Công ty CP Đầu tư và Xây dựng Xa lộ Hà Nội",
+    "Vườn Quốc gia Phú Quốc",
+    "Dự án do ADB tài trợ"
+  ]
+}
