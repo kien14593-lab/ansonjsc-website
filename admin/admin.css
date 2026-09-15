@@ -210,14 +210,15 @@ details.item .item-body { padding: 0.9rem 0.9rem 0.2rem; border-top: 1px solid v
 .iconbtn.danger:hover:not(:disabled) { background: #fdecec; }
 .add-row { margin-top: 0.4rem; }
 .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; }
-table.edit-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+table.edit-table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 0.88rem; }
 table.edit-table th { text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); padding: 0.55rem 0.5rem; background: var(--bg); border-bottom: 1px solid var(--line); white-space: nowrap; }
 table.edit-table td { padding: 0.3rem 0.35rem; border-bottom: 1px solid var(--line); vertical-align: top; }
 table.edit-table tr:last-child td { border-bottom: 0; }
 table.edit-table td.idx { color: var(--muted); font-size: 0.78rem; padding-top: 0.75rem; text-align: center; }
 table.edit-table td.acts { white-space: nowrap; padding-top: 0.5rem; }
+table.edit-table .iconbtn { width: 24px; height: 24px; }
 table.edit-table input, table.edit-table select, table.edit-table textarea { margin-top: 0; padding: 0.45rem 0.55rem; font-size: 0.88rem; border-radius: 7px; min-width: 90px; }
-table.edit-table textarea { min-height: 2.4rem; }
+table.edit-table textarea { min-height: 2.4rem; overflow: hidden; resize: none; line-height: 1.35; }
 .img-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .img-item { position: relative; width: 150px; }
 .img-item img, .img-single img { width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); display: block; }

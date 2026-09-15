@@ -67,7 +67,7 @@
       { k: 'short', label: 'Tên ngắn (hiện trên tab)' }, { k: 'title', label: 'Tên đầy đủ' },
       { k: 'items', label: 'Danh sách hợp đồng', type: 'table', item: 'hợp đồng', fields: [
         { k: 'client', label: 'Chủ đầu tư', type: 'textarea', w: '24%' }, { k: 'scope', label: 'Nội dung hợp đồng', type: 'textarea' },
-        { k: 'value', label: 'Giá trị (VNĐ)', type: 'money', w: '150px' }, { k: 'grade', label: 'Cấp CT', type: 'select', options: CGRADES, w: '100px' }] }] },
+        { k: 'value', label: 'Giá trị (VNĐ)', type: 'money', w: '165px' }, { k: 'grade', label: 'Cấp CT', type: 'select', options: CGRADES, w: '100px' }] }] },
     { key: 'projects', grp: 'Dự án', label: 'Công trình tiêu biểu', page: 'du-an.html#tieu-bieu', hint: 'Điền "Thứ tự trang chủ" (1, 2, 3…) cho công trình muốn hiện ở trang chủ; để trống nếu không.', type: 'list', item: 'công trình', titleKey: 'title', fields: [
       { k: 'title', label: 'Tên công trình', full: true }, { k: 'client', label: 'Chủ đầu tư', full: true },
       { k: 'group', label: 'Loại công việc', type: 'select', options: GROUPS }, { k: 'grade', label: 'Cấp công trình', type: 'select', options: GRADES },
@@ -158,8 +158,9 @@
   }
   function field(f, path, sec) {
     var block = /^(table|images|image|file|numbers)$/.test(f.type || '');
+    var full = f.full || /^(table|images|file|numbers)$/.test(f.type || '');
     var tag = block ? 'div' : 'label';
-    return '<' + tag + ' class="fld' + (f.full ? ' full' : '') + '">' + (block ? '<span class="label">' + esc(f.label) + '</span>' : esc(f.label)) +
+    return '<' + tag + ' class="fld' + (full ? ' full' : '') + '">' + (block ? '<span class="label">' + esc(f.label) + '</span>' : esc(f.label)) +
       control(f, path, sec, false) + (f.hint ? '<span class="hint">' + esc(f.hint) + '</span>' : '') + '</' + tag + '>';
   }
   function actions(path, i, n) {
@@ -200,8 +201,16 @@
     else if (sec.type === 'lines') html += '<label class="fld full">' + esc(sec.label) + control({ type: 'lines', rows: sec.rows }, sec.key, sec) + '</label>';
     else html += list(sec);
     $('#content-form').innerHTML = html;
+    autosizeAll($('#content-form'));
     document.querySelectorAll('#content-nav button').forEach(function (b) { b.classList.toggle('active', b.dataset.key === current); });
   }
+  /* Ô nhập nhiều dòng trong bảng tự giãn theo nội dung (chỉ khi đang hiển thị). */
+  function autosize(el) {
+    if (!el.offsetParent) return;
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight + 2) + 'px';
+  }
+  function autosizeAll(root) { root.querySelectorAll('table.edit-table textarea').forEach(autosize); }
   function rerender() { var y = window.scrollY; renderNav(); render(); window.scrollTo(0, y); }
   function renderNav() {
     var html = '', grp = null;
@@ -293,6 +302,7 @@
     else if (t === 'lines') pathSet(path, el.value.split('\n'));
     else pathSet(path, el.value);
     markDirty();
+    if (el.tagName === 'TEXTAREA' && el.closest('table.edit-table')) autosize(el);
     // Cập nhật tiêu đề thẻ khi sửa trường tiêu đề
     var sec = section(current), m = /^[^.]+\.(\d+)\.([^.]+)$/.exec(path);
     if (sec && sec.type === 'list' && m && m[2] === sec.titleKey) { var d = el.closest('details.item'); if (d) d.querySelector('.ttl').textContent = itemTitle(sec, pathGet(current + '.' + m[1]), Number(m[1])).title; }
@@ -372,6 +382,7 @@
   function onToggle(e) {
     var d = e.target; if (!d.classList || !d.classList.contains('item')) return;
     opens(current)[Number(d.dataset.idx)] = d.open;
+    if (d.open) autosizeAll(d);
   }
 
   /* ================= Khởi tạo ================= */
