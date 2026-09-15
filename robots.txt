@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ansonjsc.com.vn/sitemap.xml
