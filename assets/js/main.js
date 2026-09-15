@@ -32,10 +32,40 @@
   }
 
   /* ---------- Đánh dấu menu đang active ---------- */
-  var path = location.pathname.split('/').pop() || 'index.html';
+  var path = document.body.getAttribute('data-nav') || location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav a[href]').forEach(function (a) {
-    var href = a.getAttribute('href').split('#')[0];
+    var href = a.getAttribute('href').split('#')[0].split('/').pop();
     if (href === path || (path === '' && href === 'index.html')) a.classList.add('active');
+  });
+
+  /* ---------- Lọc bài viết theo danh mục (trang Tin tức) ---------- */
+  var filterGroup = document.querySelector('[data-filter-group]');
+  if (filterGroup) {
+    var fbtns = filterGroup.querySelectorAll('[data-filter]');
+    var cards = document.querySelectorAll('.news-card[data-category]');
+    var emptyMsg = document.querySelector('.empty-filter');
+    fbtns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var f = b.getAttribute('data-filter');
+        fbtns.forEach(function (x) { x.classList.toggle('active', x === b); });
+        var shown = 0;
+        cards.forEach(function (c) {
+          var ok = f === '*' || c.getAttribute('data-category') === f;
+          c.hidden = !ok;
+          if (ok) { shown++; c.classList.add('in'); }
+        });
+        if (emptyMsg) emptyMsg.hidden = shown > 0;
+      });
+    });
+  }
+
+  /* ---------- Sao chép liên kết bài viết ---------- */
+  document.querySelectorAll('[data-copy-link]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var done = function () { var t = btn.textContent; btn.textContent = 'Đã sao chép!'; setTimeout(function () { btn.textContent = t; }, 2000); };
+      if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done);
+      else { window.prompt('Sao chép liên kết:', location.href); }
+    });
   });
 
   /* ---------- Tabs ---------- */

@@ -33,6 +33,7 @@ NAV = [
     ("gioi-thieu.html", "Giới thiệu"),
     ("nang-luc.html", "Năng lực"),
     ("du-an.html", "Dự án"),
+    ("tin-tuc.html", "Tin tức"),
     ("lien-he.html", "Liên hệ"),
 ]
 

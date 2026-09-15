@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Quản trị website – Công ty Cổ phần An Sơn</title>
+<link rel="icon" href="../assets/img/favicon.ico" sizes="32x32">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- ===== Thanh trên cùng ===== -->
+<header class="topbar">
+  <a class="brand" href="../index.html" target="_blank" rel="noopener" title="Mở website">
+    <img src="../assets/img/logo-mark.svg" alt="An Sơn" width="56" height="36">
+    <span><strong>AN SƠN</strong><small>Quản trị website</small></span>
+  </a>
+  <nav class="topnav" id="topnav" hidden>
+    <button class="navbtn active" data-go="list">Bài viết</button>
+    <a class="navbtn" href="../tin-tuc.html" target="_blank" rel="noopener">Xem website ↗</a>
+  </nav>
+  <div class="userbox" id="userbox" hidden>
+    <img id="user-avatar" alt="" width="28" height="28">
+    <span id="user-login"></span>
+    <button class="btn btn-ghost btn-sm" id="btn-password" type="button" title="Đổi mật khẩu hoặc token">Đổi mật khẩu</button>
+    <button class="btn btn-ghost btn-sm" id="btn-logout" type="button">Đăng xuất</button>
+  </div>
+</header>
+
+<!-- ===== Trạng thái xuất bản ===== -->
+<div class="deploy" id="deploy" hidden>
+  <span class="dot"></span>
+  <span class="msg" id="deploy-msg"></span>
+  <a id="deploy-link" href="#" target="_blank" rel="noopener" hidden>Xem trang ↗</a>
+  <button class="close" id="deploy-close" type="button" aria-label="Đóng">×</button>
+</div>
+
+<main class="main">
+
+  <!-- ===== Đăng nhập ===== -->
+  <section class="view" id="view-login">
+    <div class="login-card">
+      <div class="login-head">
+        <img src="../assets/img/logo-mark.svg" alt="" width="72" height="46">
+        <h1>Đăng nhập quản trị</h1>
+        <p class="muted">Website Công ty Cổ phần An Sơn · kho <code id="repo-name"></code></p>
+      </div>
+      <div class="loading" id="login-loading"><span class="spinner"></span> Đang kiểm tra cấu hình đăng nhập…</div>
+      <p class="error" id="login-fatal" hidden></p>
+
+      <!-- Đăng nhập bằng tên + mật khẩu -->
+      <form id="login-form" class="login-form" hidden>
+        <label>Tên đăng nhập
+          <input type="text" id="user-input" autocomplete="username" required spellcheck="false" autocapitalize="off">
+        </label>
+        <label>Mật khẩu
+          <span class="pw-row">
+            <input type="password" id="pass-input" autocomplete="current-password" required>
+            <button type="button" class="btn btn-ghost btn-sm pw-toggle" data-for="pass-input">Hiện</button>
+          </span>
+        </label>
+        <label class="check"><input type="checkbox" id="remember" checked> Ghi nhớ đăng nhập trên máy này</label>
+        <button class="btn btn-primary" type="submit" id="btn-login">Đăng nhập</button>
+        <p class="error" id="login-error" hidden></p>
+        <p class="links small">
+          <button type="button" class="link-btn" id="link-reset">Quên mật khẩu / thiết lập lại</button> ·
+          <button type="button" class="link-btn" id="link-token-login">Đăng nhập bằng token GitHub</button>
+        </p>
+      </form>
+
+      <!-- Đăng nhập bằng token GitHub (dành cho chủ kho) -->
+      <form id="token-form" class="login-form" hidden autocomplete="off">
+        <label>Mã truy cập GitHub (token)
+          <input type="password" id="token-input" placeholder="github_pat_…" spellcheck="false" autocomplete="off">
+        </label>
+        <label class="check"><input type="checkbox" id="remember-token" checked> Ghi nhớ đăng nhập trên máy này</label>
+        <button class="btn btn-primary" type="submit" id="btn-token-login">Đăng nhập</button>
+        <p class="error" id="token-error" hidden></p>
+        <p class="links small"><button type="button" class="link-btn" id="link-pass-login">← Đăng nhập bằng mật khẩu</button></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Thiết lập đăng nhập (lần đầu / đổi mật khẩu / đổi token) ===== -->
+  <section class="view" id="view-setup" hidden>
+    <div class="login-card wide">
+      <div class="login-head">
+        <img src="../assets/img/logo-mark.svg" alt="" width="72" height="46">
+        <h1 id="setup-title">Thiết lập đăng nhập</h1>
+        <p class="muted" id="setup-intro">Chỉ làm một lần. Sau bước này, người được cấp mật khẩu có thể đăng nhập bằng <strong>tên đăng nhập + mật khẩu</strong> từ bất kỳ máy nào.</p>
+      </div>
+      <form id="setup-form" autocomplete="off">
+        <section class="step">
+          <h3><span class="num">1</span> Mã truy cập GitHub (token)</h3>
+          <details class="help" id="setup-help" open>
+            <summary>Cách tạo token (khoảng 1 phút)</summary>
+            <ol>
+              <li>Đăng nhập GitHub bằng tài khoản <strong id="help-owner"></strong>, rồi mở <a id="help-token-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+              <li><em>Token name</em>: <code>Quan tri website</code>. <em>Expiration</em>: chọn <strong>Custom</strong> và đặt ngày xa nhất được phép (tối đa 1 năm; khi hết hạn chỉ cần thiết lập lại).</li>
+              <li><em>Repository access</em> → <strong>Only select repositories</strong> → chọn <code id="help-repo"></code>.</li>
+              <li><em>Permissions</em> → <em>Repository permissions</em> → <strong>Contents: Read and write</strong> (Metadata tự bật ở mức Read).</li>
+              <li>Bấm <strong>Generate token</strong>, sao chép chuỗi <code>github_pat_…</code> và dán vào ô dưới.</li>
+            </ol>
+          </details>
+          <label>Token <span class="muted" id="setup-token-note"></span>
+            <input type="password" id="setup-token" placeholder="github_pat_…" spellcheck="false" autocomplete="off">
+          </label>
+        </section>
+
+        <section class="step">
+          <h3><span class="num">2</span> Tên đăng nhập và mật khẩu</h3>
+          <label>Tên đăng nhập
+            <input type="text" id="setup-user" value="admin" required maxlength="32" spellcheck="false" autocapitalize="off" autocomplete="off">
+          </label>
+          <label>Mật khẩu <span class="muted">(tối thiểu 12 ký tự – đã tạo sẵn mật khẩu mạnh, bạn có thể tự đổi)</span>
+            <span class="pw-row">
+              <input type="text" id="setup-pass" required minlength="12" spellcheck="false" autocomplete="new-password">
+              <button type="button" class="btn btn-ghost btn-sm" id="btn-gen-pass" title="Tạo mật khẩu khác">⟳</button>
+              <button type="button" class="btn btn-ghost btn-sm" id="btn-copy-pass">Sao chép</button>
+            </span>
+            <small id="pass-strength"></small>
+          </label>
+          <p class="note warn"><strong>Hãy lưu mật khẩu này lại ngay.</strong> Mật khẩu không được lưu ở bất kỳ đâu và không thể khôi phục – nếu quên, chỉ có thể thiết lập lại bằng token GitHub mới. Ai biết mật khẩu đều có thể đăng bài, sửa bài.</p>
+        </section>
+
+        <div class="row between">
+          <label class="check"><input type="checkbox" id="setup-remember" checked> Ghi nhớ đăng nhập trên máy này</label>
+          <span class="row">
+            <button type="button" class="btn btn-ghost" id="setup-cancel">Huỷ</button>
+            <button class="btn btn-primary" type="submit" id="btn-setup">Hoàn tất thiết lập</button>
+          </span>
+        </div>
+        <p class="error" id="setup-error" hidden></p>
+        <p class="links small" id="setup-skip-row"><button type="button" class="link-btn" id="link-setup-skip">Bỏ qua – đăng nhập bằng token GitHub</button></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Danh sách bài viết ===== -->
+  <section class="view" id="view-list" hidden>
+    <div class="page-head">
+      <div>
+        <h1>Bài viết</h1>
+        <p class="muted" id="list-summary">Đang tải…</p>
+      </div>
+      <div class="actions">
+        <input type="search" id="search" placeholder="Tìm bài viết…">
+        <button class="btn btn-ghost" id="btn-reload" type="button" title="Tải lại danh sách">⟳</button>
+        <button class="btn btn-primary" id="btn-new" type="button">+ Viết bài mới</button>
+      </div>
+    </div>
+    <div class="table-card">
+      <table class="posts" id="posts-table">
+        <thead><tr><th>Tiêu đề</th><th>Danh mục</th><th>Ngày đăng</th><th>Trạng thái</th><th class="right">Thao tác</th></tr></thead>
+        <tbody id="posts-body"></tbody>
+      </table>
+      <div class="empty" id="posts-empty" hidden>
+        <p><strong>Chưa có bài viết nào.</strong></p>
+        <p class="muted">Bấm “Viết bài mới” để đăng bài đầu tiên.</p>
+      </div>
+      <div class="loading" id="posts-loading"><span class="spinner"></span> Đang tải danh sách bài viết…</div>
+    </div>
+  </section>
+
+  <!-- ===== Soạn / sửa bài ===== -->
+  <section class="view" id="view-editor" hidden>
+    <div class="page-head">
+      <div>
+        <button class="btn btn-ghost btn-sm" id="btn-back" type="button">← Danh sách</button>
+        <h1 id="editor-title">Viết bài mới</h1>
+      </div>
+      <div class="actions">
+        <label class="check publish"><input type="checkbox" id="f-published" checked> Hiển thị trên website</label>
+        <button class="btn btn-ghost" id="btn-cancel" type="button">Huỷ</button>
+        <button class="btn btn-primary" id="btn-save" type="button">Lưu &amp; xuất bản</button>
+      </div>
+    </div>
+
+    <div class="editor-grid">
+      <div class="editor-main">
+        <label>Tiêu đề bài viết *
+          <input type="text" id="f-title" placeholder="Ví dụ: Khởi công dự án nâng cấp đường ĐT.782" required maxlength="160">
+        </label>
+        <label>Tóm tắt <span class="muted">(hiển thị ở danh sách tin &amp; khi chia sẻ mạng xã hội)</span>
+          <textarea id="f-summary" rows="2" maxlength="300" placeholder="1–2 câu tóm tắt nội dung bài viết"></textarea>
+        </label>
+        <div class="field">
+          <span class="label">Nội dung *</span>
+          <div id="editor"></div>
+          <textarea id="f-body-fallback" rows="18" hidden placeholder="Nội dung bài viết (định dạng Markdown)"></textarea>
+        </div>
+      </div>
+      <aside class="editor-side">
+        <div class="side-card">
+          <h3>Thông tin</h3>
+          <label>Danh mục
+            <select id="f-category"></select>
+          </label>
+          <label>Ngày đăng
+            <input type="date" id="f-date">
+          </label>
+          <label>Đường dẫn (slug)
+            <input type="text" id="f-slug" spellcheck="false" placeholder="tu-dong-tao-tu-tieu-de">
+            <small class="muted">Địa chỉ bài: <code id="slug-preview">tin-tuc/…html</code></small>
+          </label>
+        </div>
+        <div class="side-card">
+          <h3>Ảnh đại diện</h3>
+          <div class="cover" id="cover-box">
+            <img id="cover-img" alt="" hidden>
+            <span class="placeholder" id="cover-placeholder">Chưa có ảnh</span>
+          </div>
+          <div class="row">
+            <label class="btn btn-ghost btn-sm file-btn">Tải ảnh lên<input type="file" id="f-cover-file" accept="image/*" hidden></label>
+            <button class="btn btn-ghost btn-sm" id="btn-cover-clear" type="button">Bỏ ảnh</button>
+          </div>
+          <small class="muted">Nên dùng ảnh ngang tỷ lệ 16:9, dưới 1 MB.</small>
+          <input type="hidden" id="f-cover">
+        </div>
+        <div class="side-card muted small">
+          <strong>Mẹo:</strong> dán ảnh trực tiếp vào khung soạn thảo để tải lên. Liên kết tới trang khác của website dùng dạng <code>../lien-he.html</code>.
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div class="toast-wrap" id="toasts"></div>
+
+<!-- Hộp thoại xác nhận -->
+<dialog id="confirm">
+  <form method="dialog">
+    <h3 id="confirm-title">Xác nhận</h3>
+    <p id="confirm-msg"></p>
+    <div class="row right">
+      <button class="btn btn-ghost" value="cancel">Huỷ</button>
+      <button class="btn btn-danger" value="ok" id="confirm-ok">Xoá</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>

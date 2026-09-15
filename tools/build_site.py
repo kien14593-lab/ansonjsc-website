@@ -10,7 +10,15 @@ from site_data import *
 # Mặc định xuất ra thư mục cha của thư mục chứa script (thư mục gốc website)
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 C = COMPANY
+ROOT = ""            # tiền tố đường dẫn tương đối: "" cho trang gốc, "../" cho trang trong thư mục con
 IMG = "assets/img/"
+POSTS_DIR = os.path.join(OUT, "content", "posts")   # bài viết Markdown do trang quản trị tạo
+POST_URL_DIR = "tin-tuc"                             # thư mục xuất trang bài viết
+
+def set_root(r):
+    global ROOT, IMG
+    ROOT = r
+    IMG = r + "assets/img/"
 
 def esc(s):
     return html.escape(str(s), quote=True)
@@ -59,8 +67,10 @@ def ico(name, cls=""):
             f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{paths[name]}</svg>')
 
 # ---------------- LAYOUT ----------------
-def head(title, desc, page, og_img="prj-tc-ongco-1.jpg"):
+def head(title, desc, page, og_img="prj-tc-ongco-1.jpg", nav=None, og_type="website", extra=""):
     full = f"{title} | {C['name_title']}" if page != "index.html" else f"{C['name_title']} – Tư vấn thiết kế, giám sát & thi công công trình giao thông"
+    og_abs = og_img if og_img.startswith("http") else f"{C['url']}/{og_img if '/' in og_img else 'assets/img/' + og_img}"
+    body_attr = f' data-nav="{nav}"' if nav else ""
     return f"""<!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -71,23 +81,23 @@ def head(title, desc, page, og_img="prj-tc-ongco-1.jpg"):
 <meta name="keywords" content="An Sơn, ANSON JSC, tư vấn thiết kế cầu đường, tư vấn giám sát, thi công công trình giao thông, khảo sát địa hình, lập dự án đầu tư, TP.HCM">
 <meta name="author" content="{esc(C['name_title'])}">
 <link rel="canonical" href="{C['url']}/{page if page != 'index.html' else ''}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{og_type}">
 <meta property="og:locale" content="vi_VN">
 <meta property="og:site_name" content="{esc(C['name_title'])}">
 <meta property="og:title" content="{esc(full)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{C['url']}/{page if page != 'index.html' else ''}">
-<meta property="og:image" content="{C['url']}/{IMG}{og_img}">
+<meta property="og:image" content="{og_abs}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a3d91">
-<link rel="icon" href="assets/img/favicon.ico" sizes="32x32">
-<link rel="icon" href="assets/img/favicon-192.png" type="image/png" sizes="192x192">
-<link rel="apple-touch-icon" href="assets/img/favicon-192.png">
+<link rel="icon" href="{ROOT}assets/img/favicon.ico" sizes="32x32">
+<link rel="icon" href="{ROOT}assets/img/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="{ROOT}assets/img/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-<script type="application/ld+json">
+<link rel="stylesheet" href="{ROOT}assets/css/style.css">
+{extra}<script type="application/ld+json">
 {{
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -109,7 +119,7 @@ def head(title, desc, page, og_img="prj-tc-ongco-1.jpg"):
 }}
 </script>
 </head>
-<body>
+<body{body_attr}>
 """
 
 def topbar():
@@ -126,32 +136,32 @@ def topbar():
 """
 
 def header():
-    links = "".join(f'<a href="{h}">{t}</a>' for h, t in NAV)
+    links = "".join(f'<a href="{ROOT}{h}">{t}</a>' for h, t in NAV)
     return f"""<header class="header">
   <div class="container">
-    <a class="brand" href="index.html" aria-label="{esc(C['name_title'])} – Trang chủ">
-      <img src="assets/img/logo-mark.svg" alt="Logo An Sơn" width="72" height="46">
+    <a class="brand" href="{ROOT}index.html" aria-label="{esc(C['name_title'])} – Trang chủ">
+      <img src="{ROOT}assets/img/logo-mark.svg" alt="Logo An Sơn" width="72" height="46">
       <span class="brand-text"><span class="brand-name">AN SƠN</span><span class="brand-sub">Công ty Cổ phần An Sơn</span></span>
     </a>
     <nav class="nav" id="nav" aria-label="Menu chính">
       {links}
-      <a class="btn btn-primary btn-sm" href="{C['pdf']}" target="_blank" rel="noopener">{ico('download')} Hồ sơ năng lực</a>
+      <a class="btn btn-primary btn-sm" href="{ROOT}{C['pdf']}" target="_blank" rel="noopener">{ico('download')} Hồ sơ năng lực</a>
     </nav>
-    <a class="btn btn-primary btn-sm header-cta" href="{C['pdf']}" target="_blank" rel="noopener">{ico('download')} Tải hồ sơ năng lực</a>
+    <a class="btn btn-primary btn-sm header-cta" href="{ROOT}{C['pdf']}" target="_blank" rel="noopener">{ico('download')} Tải hồ sơ năng lực</a>
     <button class="nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="nav">{ico('menu')}</button>
   </div>
 </header>
 """
 
 def footer():
-    links = "".join(f'<li><a href="{h}">{t}</a></li>' for h, t in NAV)
+    links = "".join(f'<li><a href="{ROOT}{h}">{t}</a></li>' for h, t in NAV)
     svc = "".join(f'<li>{ico("check")}<span>{esc(t)}</span></li>' for _, t, _ in SERVICES)
     return f"""<footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div>
-        <a class="brand" href="index.html">
-          <img src="assets/img/logo-mark-white.svg" alt="Logo An Sơn" width="72" height="46">
+        <a class="brand" href="{ROOT}index.html">
+          <img src="{ROOT}assets/img/logo-mark-white.svg" alt="Logo An Sơn" width="72" height="46">
           <span class="brand-text"><span class="brand-name">AN SƠN</span><span class="brand-sub">{esc(C['name_en'])}</span></span>
         </a>
         <p>Doanh nghiệp tư vấn khảo sát, thiết kế, giám sát và thi công công trình giao thông với hơn 18 năm kinh nghiệm tại TP. Hồ Chí Minh và các tỉnh phía Nam.</p>
@@ -159,7 +169,7 @@ def footer():
       </div>
       <div>
         <h4>Liên kết</h4>
-        <ul>{links}<li><a href="{C['pdf']}" target="_blank" rel="noopener">Tải hồ sơ năng lực (PDF)</a></li></ul>
+        <ul>{links}<li><a href="{ROOT}{C['pdf']}" target="_blank" rel="noopener">Tải hồ sơ năng lực (PDF)</a></li></ul>
       </div>
       <div>
         <h4>Lĩnh vực</h4>
@@ -177,22 +187,23 @@ def footer():
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> {esc(C['name_title'])}. Bảo lưu mọi quyền.</span>
+      <span>© <span data-year>2026</span> {esc(C['name_title'])}. Bảo lưu mọi quyền. <a class="admin-link" href="{ROOT}admin/" rel="nofollow">Quản trị</a></span>
       <span class="slogan">{esc(C['slogan'])}</span>
     </div>
   </div>
 </footer>
 <button class="to-top" aria-label="Lên đầu trang">{ico('up')}</button>
-<script src="assets/js/main.js"></script>
+<script src="{ROOT}assets/js/main.js"></script>
 </body>
 </html>
 """
 
-def page_hero(title, sub, bg, crumb):
+def page_hero(title, sub, bg, crumb, crumbs=None):
+    trail = "".join(f'<li><a href="{ROOT}{h}">{esc(t)}</a></li>' for h, t in (crumbs or []))
     return f"""<section class="page-hero">
-  <div class="bg" style="background-image:url('{IMG}{bg}')"></div>
+  <div class="bg" style="background-image:url('{bg if bg.startswith(('http', '../', 'assets/')) else IMG + bg}')"></div>
   <div class="container">
-    <ol class="breadcrumb"><li><a href="index.html">Trang chủ</a></li><li>{esc(crumb)}</li></ol>
+    <ol class="breadcrumb"><li><a href="{ROOT}index.html">Trang chủ</a></li>{trail}<li>{esc(crumb)}</li></ol>
     <h1>{title}</h1>
     <p>{sub}</p>
   </div>
@@ -215,8 +226,219 @@ def group_chip(group):
     cls = {"Thiết kế": "", "Giám sát": "navy", "Thi công": ""}.get(group, "")
     return cls
 
+# ---------------- BÀI VIẾT (TIN TỨC) ----------------
+import re, datetime, glob, shutil
+
+POST_CATEGORIES = ["Tin công ty", "Dự án", "Thông báo", "Tuyển dụng"]
+
+try:
+    import markdown as _markdown
+
+    def md_to_html(text):
+        return _markdown.markdown(text, extensions=["extra", "sane_lists"], output_format="html5")
+except ImportError:  # bộ chuyển đổi tối giản khi chưa cài `pip install markdown`
+    def _inline(s):
+        s = esc(s)
+        s = re.sub(r"!\[([^\]]*)\]\(([^)\s]+)\)", r'<img src="\2" alt="\1">', s)
+        s = re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", r'<a href="\2">\1</a>', s)
+        s = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", s)
+        s = re.sub(r"(?<!\*)\*(?!\*)(.+?)\*", r"<em>\1</em>", s)
+        s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
+        return s
+
+    def md_to_html(text):
+        out, para, lst = [], [], None
+
+        def flush():
+            nonlocal para, lst
+            if para:
+                out.append("<p>" + _inline(" ".join(para)) + "</p>")
+                para = []
+            if lst:
+                out.append(f"</{lst}>")
+                lst = None
+
+        for raw in text.splitlines():
+            line = raw.rstrip()
+            if not line.strip():
+                flush(); continue
+            m = re.match(r"^(#{1,6})\s+(.*)", line)
+            if m:
+                flush(); out.append(f"<h{len(m[1])}>{_inline(m[2])}</h{len(m[1])}>"); continue
+            if re.match(r"^(-{3,}|\*{3,})$", line.strip()):
+                flush(); out.append("<hr>"); continue
+            if line.startswith(">"):
+                flush(); out.append(f"<blockquote><p>{_inline(line.lstrip('> '))}</p></blockquote>"); continue
+            m = re.match(r"^\s*([-*+]|\d+\.)\s+(.*)", line)
+            if m:
+                kind = "ol" if m[1][0].isdigit() else "ul"
+                if para or (lst and lst != kind):
+                    flush()
+                if not lst:
+                    out.append(f"<{kind}>"); lst = kind
+                out.append(f"<li>{_inline(m[2])}</li>"); continue
+            if lst:
+                flush()
+            para.append(line.strip())
+        flush()
+        return "\n".join(out)
+
+def parse_front_matter(text):
+    """Tách phần đầu `--- key: value ---` khỏi nội dung Markdown."""
+    meta = {}
+    text = text.lstrip("\ufeff")
+    if text.startswith("---"):
+        parts = text.split("\n", 1)[1].split("\n---", 1)
+        if len(parts) == 2:
+            for line in parts[0].splitlines():
+                if ":" in line and not line.startswith(" "):
+                    k, v = line.split(":", 1)
+                    v = v.strip()
+                    if len(v) >= 2 and v[0] == v[-1] and v[0] in "\"'":
+                        v = v[1:-1]
+                    meta[k.strip()] = v
+            return meta, parts[1].lstrip("\n")
+    return meta, text
+
+def fmt_date(iso):
+    try:
+        d = datetime.date.fromisoformat(iso[:10])
+        return d.strftime("%d/%m/%Y")
+    except ValueError:
+        return iso
+
+def plain_text(html_str, limit=160):
+    t = re.sub(r"<[^>]+>", " ", html_str)
+    t = re.sub(r"\s+", " ", html.unescape(t)).strip()
+    return t if len(t) <= limit else t[:limit].rsplit(" ", 1)[0] + "…"
+
+def localize_assets(html_str):
+    """Đưa đường dẫn ảnh về tương đối theo ROOT (kể cả link raw.githubusercontent do trang quản trị chèn)."""
+    html_str = re.sub(r"https://raw\.githubusercontent\.com/[^/\s\"')]+/[^/\s\"')]+/[^/\s\"')]+/(assets/)", ROOT + r"\1", html_str)
+    html_str = re.sub(r'(src|href)="(assets/)', rf'\1="{ROOT}\2', html_str)
+    return html_str
+
+def load_posts(include_drafts=False):
+    posts = []
+    for path in sorted(glob.glob(os.path.join(POSTS_DIR, "*.md"))):
+        slug = os.path.splitext(os.path.basename(path))[0]
+        with open(path, encoding="utf-8") as f:
+            meta, body = parse_front_matter(f.read())
+        published = meta.get("published", "true").strip().lower() not in ("false", "0", "no")
+        if not published and not include_drafts:
+            continue
+        cover = meta.get("cover", "").strip()
+        cover = re.sub(r"https://raw\.githubusercontent\.com/[^/]+/[^/]+/[^/]+/", "", cover)
+        posts.append({
+            "slug": slug,
+            "title": meta.get("title", slug).strip(),
+            "date": meta.get("date", "1970-01-01").strip(),
+            "category": meta.get("category", POST_CATEGORIES[0]).strip() or POST_CATEGORIES[0],
+            "cover": cover,
+            "summary": meta.get("summary", "").strip(),
+            "published": published,
+            "body_md": body,
+            "url": f"{POST_URL_DIR}/{slug}.html",
+        })
+    posts.sort(key=lambda p: (p["date"], p["slug"]), reverse=True)
+    return posts
+
+def post_cover(p):
+    return f"{ROOT}{p['cover']}" if p["cover"] else f"{IMG}prj-tk-gtxanh-1.jpg"
+
+def news_card(p):
+    summary = p["summary"] or plain_text(md_to_html(p["body_md"]))
+    return f"""<a class="news-card reveal" href="{ROOT}{p['url']}" data-category="{esc(p['category'])}">
+  <div class="thumb"><img src="{post_cover(p)}" alt="{esc(p['title'])}" loading="lazy"><span class="badge">{esc(p['category'])}</span></div>
+  <div class="body"><time datetime="{esc(p['date'])}">{ico('calendar')} {fmt_date(p['date'])}</time><h3>{esc(p['title'])}</h3><p>{esc(summary)}</p><span class="more">Đọc tiếp {ico('arrow')}</span></div>
+</a>"""
+
+def build_news(posts):
+    cats = [c for c in POST_CATEGORIES if any(p["category"] == c for p in posts)]
+    cats += sorted({p["category"] for p in posts} - set(POST_CATEGORIES))
+    filters = "".join(f'<button class="tab-btn" data-filter="{esc(c)}">{esc(c)} <span class="cnt">{sum(1 for p in posts if p["category"] == c)}</span></button>' for c in cats)
+    cards = "".join(news_card(p) for p in posts)
+    if posts:
+        content = f"""<div class="tabs" data-filter-group>{'<button class="tab-btn active" data-filter="*">Tất cả <span class="cnt">' + str(len(posts)) + '</span></button>' + filters}</div>
+    <div class="grid grid-3 news-grid">{cards}</div>
+    <p class="empty-filter muted text-center" hidden>Chưa có bài viết trong mục này.</p>"""
+    else:
+        content = '<div class="empty-state reveal"><h3>Chưa có bài viết</h3><p class="muted">Tin tức của công ty sẽ được cập nhật tại đây.</p></div>'
+    body = page_hero("Tin tức &amp; sự kiện", "Hoạt động của Công ty Cổ phần An Sơn, thông tin dự án và các thông báo mới nhất.", "prj-gs-catlai-1.jpg", "Tin tức")
+    body += f"""
+<section class="section" id="tin-tuc">
+  <div class="container">
+    {content}
+  </div>
+</section>
+"""
+    return head("Tin tức & sự kiện", "Tin tức, hoạt động và thông báo mới nhất từ Công ty Cổ phần An Sơn – tư vấn thiết kế, giám sát và thi công công trình giao thông.", "tin-tuc.html", "prj-gs-catlai-1.jpg") + topbar() + header() + body + footer()
+
+def build_post(p, posts):
+    set_root("../")
+    try:
+        body_html = localize_assets(md_to_html(p["body_md"]))
+        desc = p["summary"] or plain_text(body_html)
+        recent = [q for q in posts if q["slug"] != p["slug"]][:5]
+        recent_html = "".join(
+            f'<li><a href="{ROOT}{q["url"]}"><img src="{post_cover(q)}" alt="" loading="lazy"><span><strong>{esc(q["title"])}</strong><time>{fmt_date(q["date"])}</time></span></a></li>'
+            for q in recent) or '<li class="muted small">Chưa có bài viết khác.</li>'
+        share_url = f"{C['url']}/{p['url']}"
+        cover_html = f'<figure class="post-cover"><img src="{post_cover(p)}" alt="{esc(p["title"])}"></figure>' if p["cover"] else ""
+        og = f"{C['url']}/{p['cover']}" if p["cover"] else "prj-tk-gtxanh-1.jpg"
+        ld = f"""<script type="application/ld+json">
+{{"@context":"https://schema.org","@type":"NewsArticle","headline":{json_str(p['title'])},"datePublished":"{esc(p['date'])}","image":[{json_str(og if og.startswith('http') else C['url'] + '/assets/img/' + og)}],"author":{{"@type":"Organization","name":{json_str(C['name_title'])}}},"publisher":{{"@type":"Organization","name":{json_str(C['name_title'])},"logo":{{"@type":"ImageObject","url":"{C['url']}/assets/img/logo-stacked.png"}}}},"description":{json_str(desc)}}}
+</script>
+"""
+        body = f"""
+<section class="post-hero">
+  <div class="container">
+    <ol class="breadcrumb"><li><a href="{ROOT}index.html">Trang chủ</a></li><li><a href="{ROOT}tin-tuc.html">Tin tức</a></li><li>{esc(p['category'])}</li></ol>
+    <span class="chip accent">{esc(p['category'])}</span>
+    <h1>{esc(p['title'])}</h1>
+    <div class="post-meta"><time datetime="{esc(p['date'])}">{ico('calendar')} {fmt_date(p['date'])}</time><span>{ico('users')} {esc(C['short'])}</span></div>
+  </div>
+</section>
+<section class="section post-section">
+  <div class="container post-layout">
+    <article class="post reveal">
+      {cover_html}
+      {f'<p class="post-summary">{esc(p["summary"])}</p>' if p["summary"] else ''}
+      <div class="prose">
+{body_html}
+      </div>
+      <div class="post-share">
+        <span>Chia sẻ:</span>
+        <a class="btn btn-outline btn-sm" href="https://www.facebook.com/sharer/sharer.php?u={html.escape(share_url)}" target="_blank" rel="noopener">Facebook</a>
+        <button class="btn btn-outline btn-sm" type="button" data-copy-link>Sao chép liên kết</button>
+      </div>
+      <p class="post-nav"><a href="{ROOT}tin-tuc.html">{ico('arrow')} Tất cả tin tức</a></p>
+    </article>
+    <aside class="post-aside">
+      <div class="card">
+        <h3>Bài viết khác</h3>
+        <ul class="recent-posts">{recent_html}</ul>
+      </div>
+      <div class="card aside-cta">
+        <h3>Cần tư vấn cho dự án?</h3>
+        <p class="muted small">Liên hệ An Sơn để nhận hồ sơ năng lực đầy đủ và giải pháp phù hợp.</p>
+        <a class="btn btn-primary btn-sm" href="{ROOT}lien-he.html">{ico('send')} Liên hệ ngay</a>
+        <a class="btn btn-outline btn-sm" href="{ROOT}{C['pdf']}" target="_blank" rel="noopener">{ico('download')} Hồ sơ năng lực</a>
+      </div>
+    </aside>
+  </div>
+</section>
+"""
+        return head(p["title"], desc, p["url"], og, nav="tin-tuc.html", og_type="article", extra=ld) + topbar() + header() + body + footer()
+    finally:
+        set_root("")
+
+def json_str(s):
+    import json
+    return json.dumps(str(s), ensure_ascii=False)
+
 # ---------------- TRANG CHỦ ----------------
-def build_index():
+def build_index(posts=()):
     stats = "".join(
         f'<div class="stat reveal"><div class="stat-value" data-count="{v}" data-suffix="{esc(s)}">{v}<small>{esc(s)}</small></div><div class="stat-label">{esc(l)}</div></div>'
         for v, s, l in STATS)
@@ -240,6 +462,16 @@ def build_index():
     clients = "".join(f"<span>{esc(c)}</span>" for c in CLIENTS)
     total_contracts = sum(len(g[3]) for g in CONTRACT_GROUPS)
     total_value = sum(r[2] for g in CONTRACT_GROUPS for r in g[3])
+    latest = list(posts)[:3]
+    news_section = f"""
+<section class="section section-alt" id="tin-tuc">
+  <div class="container">
+    {section_head("Tin tức &amp; sự kiện", "Hoạt động mới nhất của An Sơn")}
+    <div class="grid grid-3 news-grid">{"".join(news_card(p) for p in latest)}</div>
+    <p class="text-center" style="margin-top:2.5rem"><a class="btn btn-outline" href="tin-tuc.html">Xem tất cả tin tức {ico('arrow')}</a></p>
+  </div>
+</section>
+""" if latest else ""
 
     body = f"""
 <section class="hero">
@@ -317,7 +549,7 @@ def build_index():
     <div class="client-list reveal">{clients}</div>
   </div>
 </section>
-
+{news_section}
 <section class="section" style="padding-top:0">
   <div class="container">
     <div class="cta reveal">
@@ -659,26 +891,35 @@ def build_404():
 """
     return head("Không tìm thấy trang", "Trang không tồn tại.", "404.html") + topbar() + header() + body + footer()
 
-def build_sitemap():
+def build_sitemap(posts=()):
     urls = "".join(f"  <url><loc>{C['url']}/{'' if h == 'index.html' else h}</loc><changefreq>monthly</changefreq><priority>{'1.0' if h == 'index.html' else '0.8'}</priority></url>\n" for h, _ in NAV)
+    urls += "".join(f"  <url><loc>{C['url']}/{p['url']}</loc><lastmod>{esc(p['date'][:10])}</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>\n" for p in posts)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
 
 def write(name, content):
     p = os.path.join(OUT, name)
+    os.makedirs(os.path.dirname(p) or ".", exist_ok=True)
     with open(p, "w", encoding="utf-8", newline="\n") as f:
         f.write(content)
     print("wrote", name, len(content))
 
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
-    write("index.html", build_index())
+    posts = load_posts()
+    write("index.html", build_index(posts))
     write("gioi-thieu.html", build_about())
     write("nang-luc.html", build_capability())
     write("du-an.html", build_projects())
+    write("tin-tuc.html", build_news(posts))
+    # Xoá trang bài viết cũ rồi sinh lại toàn bộ (bài đã xoá trong content/ sẽ biến mất)
+    shutil.rmtree(os.path.join(OUT, POST_URL_DIR), ignore_errors=True)
+    for p in posts:
+        write(p["url"], build_post(p, posts))
     write("lien-he.html", build_contact())
     write("404.html", build_404())
-    write("sitemap.xml", build_sitemap())
-    write("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {C['url']}/sitemap.xml\n")
+    write("sitemap.xml", build_sitemap(posts))
+    write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /admin/\nDisallow: /content/\nDisallow: /tools/\nSitemap: {C['url']}/sitemap.xml\n")
+    print("posts:", len(posts), "(drafts:", len(load_posts(True)) - len(posts), ")")
     # Thống kê kiểm tra
     n = sum(len(g[3]) for g in CONTRACT_GROUPS)
     v = sum(r[2] for g in CONTRACT_GROUPS for r in g[3])
